@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  /* Ocean — primary brand blue */
+  --color-ocean-50: #eef7f9;
+  --color-ocean-100: #d9edf2;
+  --color-ocean-200: #b3dbe6;
+  --color-ocean-300: #7fc2d4;
+  --color-ocean-400: #47a3bd;
+  --color-ocean-500: #2b87a3;
+  --color-ocean-600: #1f6d88;
+  --color-ocean-700: #1d5970;
+  --color-ocean-800: #1d4a5d;
+  --color-ocean-900: #1c3e4e;
+  --color-ocean-950: #0e2833;
+
+  /* Sand — warm neutral */
+  --color-sand-50: #faf8f4;
+  --color-sand-100: #f4efe6;
+  --color-sand-200: #e8dcc8;
+  --color-sand-300: #d9c6a6;
+  --color-sand-400: #c8ab82;
+  --color-sand-500: #ba9767;
+  --color-sand-600: #a88152;
+  --color-sand-700: #8c6844;
+  --color-sand-800: #72553c;
+  --color-sand-900: #5d4733;
+
+  /* Palm — green accent */
+  --color-palm-50: #f2f7f3;
+  --color-palm-100: #dfece2;
+  --color-palm-200: #c1dac8;
+  --color-palm-300: #97bfa4;
+  --color-palm-400: #6a9f7d;
+  --color-palm-500: #4a835f;
+  --color-palm-600: #38684b;
+  --color-palm-700: #2e533d;
+  --color-palm-800: #274334;
+  --color-palm-900: #21382c;
+
+  /* Sunset — warm accent */
+  --color-sunset-50: #fef6ee;
+  --color-sunset-100: #fdead6;
+  --color-sunset-200: #fad1ac;
+  --color-sunset-300: #f6b077;
+  --color-sunset-400: #f18742;
+  --color-sunset-500: #ee6c24;
+  --color-sunset-600: #df5218;
+  --color-sunset-700: #b93d16;
+  --color-sunset-800: #93321a;
+  --color-sunset-900: #772b18;
+
+  /* Shadows */
+  --shadow-soft: 0 1px 2px rgb(28 62 78 / 0.06), 0 4px 12px rgb(28 62 78 / 0.06);
+  --shadow-card: 0 1px 3px rgb(28 62 78 / 0.08), 0 8px 24px rgb(28 62 78 / 0.08);
+  --shadow-lift: 0 2px 6px rgb(28 62 78 / 0.1), 0 16px 40px rgb(28 62 78 / 0.14);
+
+  /* Animations */
+  --animate-fade-up: fade-up 0.6s ease-out both;
+  --animate-fade-in: fade-in 0.4s ease-out both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* Base styles live in @layer base so Tailwind utilities can override them */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-stone-700 antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply text-stone-900;
+  }
+
+  /* Visible, consistent focus states for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--color-ocean-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-ocean-200);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
