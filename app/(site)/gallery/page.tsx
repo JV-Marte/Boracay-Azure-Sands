@@ -4,7 +4,7 @@ import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "Photos of Azure Sands Boracay Condotel — island suites, the pool, White Beach, dining spaces, and nearby attractions.",
+    "Photos of Azure Sands Boracay Condotel — island suites, balconies and views, plus Azure Sands Cafe and Azure Sands Fitness on the ground floor.",
 };
 
 export default function GalleryPage() {
@@ -16,7 +16,8 @@ export default function GalleryPage() {
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-stone-500">
           Step inside our four suites — the beds you’ll sleep in, the balconies
-          you’ll claim, and the views you’ll write home about.
+          you’ll claim, the views you’ll write home about — and the cafe and gym
+          waiting downstairs.
         </p>
       </div>
       <div className="mt-10">

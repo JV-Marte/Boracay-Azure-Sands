@@ -6,6 +6,7 @@ const moments = [
   "Fiber Wi-Fi and a real desk",
   "Transfers from Caticlan",
   "Balconies that catch the breeze",
+  "A cafe and a gym downstairs",
 ];
 
 function Row({ hidden }: { hidden?: boolean }) {

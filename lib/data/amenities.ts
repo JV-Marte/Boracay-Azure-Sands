@@ -1,5 +1,6 @@
 import {
   AirVent,
+  Dumbbell,
   ArrowUpDown,
   Baby,
   BedDouble,
@@ -47,6 +48,22 @@ export const AMENITIES: AmenityDef[] = [
   { key: "family_friendly", label: "Family-friendly", icon: Baby, featured: true, description: "Cribs and high chairs on request; suites that sleep up to five." },
   { key: "long_stay", label: "Long-stay discounts", icon: Percent, featured: true, description: "Stay 7+ nights and save 10% automatically — no code needed." },
   { key: "security", label: "24/7 security", icon: Shield, featured: true, description: "Keycard access, CCTV in common areas, and round-the-clock staff." },
+  {
+    key: "onsite_cafe",
+    label: "Cafe & room service",
+    icon: UtensilsCrossed,
+    featured: true,
+    description:
+      "Azure Sands Cafe is on the ground floor — order from your phone and charge it to your room.",
+  },
+  {
+    key: "fitness_centre",
+    label: "Fitness centre",
+    icon: Dumbbell,
+    featured: true,
+    description:
+      "A full gym downstairs with free weights, cardio, and coached classes. ₱150 a day for guests.",
+  },
   { key: "bathtub", label: "Bathtub", icon: Bath },
   { key: "dining_area", label: "Dining area", icon: UtensilsCrossed },
   { key: "sofa_bed", label: "Sofa bed", icon: BedDouble },

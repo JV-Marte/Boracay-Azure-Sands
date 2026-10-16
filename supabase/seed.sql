@@ -16,7 +16,7 @@ values
     'A bright, calm studio finished in warm sand tones and woven island textures — an easy base for couples and solo travelers. The queen bed faces a wall-mounted smart TV, while the kitchenette (induction hob, microwave, full-size fridge) makes slow mornings simple. Coffee on your private balcony, then a short stroll to White Beach.',
     'studio', 4500, 2, 'queen', '1 queen bed', 28,
     '["wifi","aircon","kitchenette","balcony","smart_tv","housekeeping","pool","beach_access","luggage_storage","security"]'::jsonb,
-    '["/images/rooms/deluxe-studio/interior.png","/images/rooms/deluxe-studio/bedroom.png","/images/rooms/deluxe-studio/balcony.png","/images/rooms/deluxe-studio/bathroom.png","/images/rooms/deluxe-studio/view.png"]'::jsonb,
+    '["/images/rooms/deluxe-studio/interior.jpg","/images/rooms/deluxe-studio/bedroom.jpg","/images/rooms/deluxe-studio/balcony.jpg","/images/rooms/deluxe-studio/bathroom.jpg","/images/rooms/deluxe-studio/view.jpg"]'::jsonb,
     'active'
   ),
   (
@@ -24,7 +24,7 @@ values
     'Our most-loved suite for families: two queen beds, a proper kitchen, and a dining area where everyone actually fits. Kids nap while you read on the balcony; in the evening, cook rice and grilled pork belly like a local or walk five minutes* to D''Mall for dinner. Cribs and high chairs are free on request.',
     'suite', 7800, 4, 'two_queens', '2 queen beds', 46,
     '["wifi","aircon","full_kitchen","dining_area","balcony","smart_tv","housekeeping","family_friendly","pool","beach_access","security"]'::jsonb,
-    '["/images/rooms/family-suite/interior.png","/images/rooms/family-suite/bedroom.png","/images/rooms/family-suite/balcony.png","/images/rooms/family-suite/bathroom.png","/images/rooms/family-suite/view.png"]'::jsonb,
+    '["/images/rooms/family-suite/interior.jpg","/images/rooms/family-suite/bedroom.jpg","/images/rooms/family-suite/balcony.jpg","/images/rooms/family-suite/bathroom.jpg","/images/rooms/family-suite/view.jpg"]'::jsonb,
     'active'
   ),
   (
@@ -32,7 +32,7 @@ values
     'Wake to the color the island is named for. The king bed points straight at an ocean-facing balcony, and the deep soaking tub turns sunset hour into a ritual. A mini kitchen covers breakfast and halo-halo cravings; for everything else, the beachfront is just below. Best booked early — there''s only a handful of these.',
     'suite', 6900, 2, 'king', '1 king bed', 38,
     '["wifi","aircon","kitchenette","balcony","ocean_view","bathtub","smart_tv","housekeeping","pool","beach_access","security"]'::jsonb,
-    '["/images/rooms/ocean-view-suite/interior.png","/images/rooms/ocean-view-suite/bedroom.png","/images/rooms/ocean-view-suite/balcony.png","/images/rooms/ocean-view-suite/bathroom.png","/images/rooms/ocean-view-suite/view.png"]'::jsonb,
+    '["/images/rooms/ocean-view-suite/interior.jpg","/images/rooms/ocean-view-suite/bedroom.jpg","/images/rooms/ocean-view-suite/balcony.jpg","/images/rooms/ocean-view-suite/bathroom.jpg","/images/rooms/ocean-view-suite/view.jpg"]'::jsonb,
     'active'
   ),
   (
@@ -40,7 +40,7 @@ values
     'A two-level loft that sleeps five without feeling crowded: king bed upstairs under the eaves, queen bed and a sofa bed below. The full kitchen and dining table make it the pick for barkadas and workations — fiber Wi-Fi, a real workspace, and a balcony big enough for everyone at golden hour.',
     'loft', 9500, 5, 'king_and_queen', '1 king, 1 queen + sofa bed', 62,
     '["wifi","aircon","full_kitchen","dining_area","balcony","loft_layout","sofa_bed","workspace","smart_tv","housekeeping","pool","beach_access","security"]'::jsonb,
-    '["/images/rooms/premium-loft/interior.png","/images/rooms/premium-loft/bedroom.png","/images/rooms/premium-loft/balcony.png","/images/rooms/premium-loft/bathroom.png","/images/rooms/premium-loft/view.png"]'::jsonb,
+    '["/images/rooms/premium-loft/interior.jpg","/images/rooms/premium-loft/bedroom.jpg","/images/rooms/premium-loft/balcony.jpg","/images/rooms/premium-loft/bathroom.jpg","/images/rooms/premium-loft/view.jpg"]'::jsonb,
     'active'
   )
 on conflict (slug) do update set

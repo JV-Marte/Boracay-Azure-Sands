@@ -50,7 +50,7 @@ export default function AboutPage() {
     <>
       <section className="grain relative isolate flex min-h-[78svh] items-end overflow-hidden bg-ink-950">
         <Image
-          src="/images/boracay-hero-v2.png"
+          src="/images/boracay-hero-v2.jpg"
           alt="White Beach, Boracay — turquoise water meeting powder-white sand"
           fill
           priority

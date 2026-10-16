@@ -3,6 +3,8 @@
 import {
   BedDouble,
   CalendarRange,
+  ChefHat,
+  Dumbbell,
   Inbox,
   LayoutDashboard,
   LogOut,
@@ -10,12 +12,12 @@ import {
   MessageSquareText,
   Star,
   Tags,
-  TreePalm,
   X,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -26,6 +28,12 @@ const links = [
   { href: "/admin/promo-codes", label: "Promo codes", icon: Tags },
   { href: "/admin/reviews", label: "Reviews", icon: Star },
   { href: "/admin/inquiries", label: "Inquiries", icon: Inbox },
+];
+
+/** The add-on modules that share this dashboard. */
+const moduleLinks = [
+  { href: "/admin/orders", label: "Kitchen board", icon: ChefHat },
+  { href: "/admin/gym-signups", label: "Gym sign-ups", icon: Dumbbell },
 ];
 
 export function AdminSidebar() {
@@ -46,6 +54,29 @@ export function AdminSidebar() {
           link.href === "/admin"
             ? pathname === "/admin"
             : pathname.startsWith(link.href);
+        return (
+          <Link
+            key={link.href}
+            href={link.href}
+            onClick={() => setOpen(false)}
+            aria-current={active ? "page" : undefined}
+            className={cn(
+              "flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium transition-colors",
+              active
+                ? "bg-ocean-800 text-white"
+                : "text-ocean-200/80 hover:bg-ocean-900 hover:text-white",
+            )}
+          >
+            <link.icon className="size-4.5 shrink-0" aria-hidden />
+            {link.label}
+          </Link>
+        );
+      })}
+      <p className="mt-4 px-3.5 pb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-ocean-400/70">
+        Modules
+      </p>
+      {moduleLinks.map((link) => {
+        const active = pathname.startsWith(link.href);
         return (
           <Link
             key={link.href}
@@ -88,9 +119,11 @@ export function AdminSidebar() {
     <>
       {/* Mobile top bar */}
       <div className="flex items-center justify-between bg-ocean-950 px-4 py-3 lg:hidden">
-        <Link href="/admin" className="flex items-center gap-2 font-display font-medium text-white">
-          <TreePalm className="size-5 text-ocean-300" aria-hidden />
-          Azure Sands Admin
+        <Link href="/admin" className="flex items-center gap-2.5">
+          <Logo brand="main" tone="light" className="h-7" />
+          <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-ocean-400">
+            Admin
+          </span>
         </Link>
         <button
           type="button"
@@ -108,16 +141,10 @@ export function AdminSidebar() {
 
       {/* Desktop sidebar */}
       <aside className="sticky top-0 hidden h-svh w-60 shrink-0 flex-col bg-ocean-950 p-4 lg:flex">
-        <Link
-          href="/admin"
-          className="mb-6 flex items-center gap-2.5 px-2 font-display text-lg font-medium text-white"
-        >
-          <TreePalm className="size-6 text-ocean-300" aria-hidden />
-          <span>
-            Azure Sands
-            <span className="block text-[11px] font-sans font-medium uppercase tracking-[0.2em] text-ocean-400">
-              Admin
-            </span>
+        <Link href="/admin" className="mb-6 block px-2">
+          <Logo brand="main" tone="light" className="h-8" />
+          <span className="mt-1.5 block text-[11px] font-medium uppercase tracking-[0.2em] text-ocean-400">
+            Admin
           </span>
         </Link>
         {nav}

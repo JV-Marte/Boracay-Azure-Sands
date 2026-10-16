@@ -60,6 +60,31 @@
   --color-sunset-800: #93321a;
   --color-sunset-900: #772b18;
 
+  /* Iron — graphite ramp for the Azure Sands Fitness module */
+  --color-iron-50: #f6f7f8;
+  --color-iron-100: #eceef0;
+  --color-iron-200: #d6dade;
+  --color-iron-300: #b2b9c0;
+  --color-iron-400: #87919b;
+  --color-iron-500: #68727d;
+  --color-iron-600: #525b65;
+  --color-iron-700: #434a52;
+  --color-iron-800: #2f353b;
+  --color-iron-900: #1e2328;
+  --color-iron-950: #121619;
+
+  /* Ember — high-energy accent used by the gym CTAs */
+  --color-ember-50: #fff3ed;
+  --color-ember-100: #ffe3d4;
+  --color-ember-200: #ffc2a8;
+  --color-ember-300: #ff9770;
+  --color-ember-400: #fd6b3a;
+  --color-ember-500: #f8471a;
+  --color-ember-600: #e42f0f;
+  --color-ember-700: #bd200f;
+  --color-ember-800: #961d14;
+  --color-ember-900: #7a1c14;
+
   /* Shadows — tinted with ink, never pure black */
   --shadow-soft: 0 1px 2px rgb(10 26 28 / 0.05), 0 6px 16px rgb(10 26 28 / 0.05);
   --shadow-card: 0 1px 3px rgb(10 26 28 / 0.06), 0 12px 32px rgb(10 26 28 / 0.08);

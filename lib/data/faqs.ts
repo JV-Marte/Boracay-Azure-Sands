@@ -1,5 +1,5 @@
 import type { Faq } from "@/types";
-import { SITE } from "@/lib/constants";
+import { CAFE, GYM, SITE } from "@/lib/constants";
 
 export const FAQS: Faq[] = [
   {
@@ -66,6 +66,16 @@ export const FAQS: Faq[] = [
     question: "How do I get from the airport to the property?",
     answer:
       "From Caticlan Airport it's a short trike ride to the Jetty Port, a 10–15 minute boat to Boracay, then a van or e-trike to the property. Our transfer service handles the whole chain, including terminal and environmental fees.",
+  },
+  {
+    category: "Property & amenities",
+    question: "Is there food on the property?",
+    answer: `Yes — ${CAFE.name} is on the ground floor, open ${CAFE.hoursLabel.replace("Kitchen open ", "").toLowerCase()}. Order from your phone at /cafe/menu for pickup, delivery along White Beach, or straight to your room, where it goes on your bill and you settle at check-out.`,
+  },
+  {
+    category: "Property & amenities",
+    question: "Do you have a gym?",
+    answer: `${GYM.name} is downstairs, ${GYM.hoursLabel.toLowerCase()}. Guests pay ₱150 a day; monthly memberships from ₱1,500 include every group class. The weekly timetable is at /gym/schedule.`,
   },
   {
     category: "Property & amenities",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { TreePalm } from "lucide-react";
 import { redirect } from "next/navigation";
 import { LoginForm } from "@/components/admin/LoginForm";
+import { Logo } from "@/components/ui/Logo";
 import {
   DEMO_ADMIN_EMAIL,
   DEMO_ADMIN_PASSWORD,
@@ -22,9 +22,7 @@ export default async function AdminLoginPage() {
     <div className="flex min-h-svh items-center justify-center bg-ocean-950 px-4">
       <div className="w-full max-w-sm">
         <div className="flex flex-col items-center text-center">
-          <div className="flex size-12 items-center justify-center rounded-2xl bg-ocean-800">
-            <TreePalm className="size-6 text-ocean-200" aria-hidden />
-          </div>
+          <Logo brand="main" tone="light" className="h-11" />
           <h1 className="mt-4 font-display text-2xl font-medium text-white">
             Azure Sands Staff
           </h1>

@@ -7,7 +7,12 @@ import { Marquee } from "@/components/home/Marquee";
 import { ReviewCarousel } from "@/components/home/ReviewCarousel";
 import { ScrubReveal } from "@/components/home/ScrubReveal";
 import { SuiteAccordion } from "@/components/home/SuiteAccordion";
-import { BentoSection, CtaSection, FaqSection } from "@/components/home/sections";
+import {
+  BentoSection,
+  CtaSection,
+  FaqSection,
+  OnPropertySection,
+} from "@/components/home/sections";
 import { SITE } from "@/lib/constants";
 import { listApprovedReviews } from "@/services/reviews";
 import { listRooms } from "@/services/rooms";
@@ -38,6 +43,8 @@ const lodgingJsonLd = {
     { "@type": "LocationFeatureSpecification", name: "Free Wi-Fi", value: true },
     { "@type": "LocationFeatureSpecification", name: "Swimming pool", value: true },
     { "@type": "LocationFeatureSpecification", name: "Air conditioning", value: true },
+    { "@type": "LocationFeatureSpecification", name: "On-site restaurant", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Fitness centre", value: true },
   ],
 };
 
@@ -110,8 +117,12 @@ export default async function HomePage() {
         </section>
       </div>
 
-      <section className="mx-auto max-w-7xl px-5 py-32 sm:px-8 md:py-48">
-        <IslandPinned />
+      <OnPropertySection />
+
+      <section className="border-t border-sand-200">
+        <div className="mx-auto max-w-7xl px-5 py-32 sm:px-8 md:py-48">
+          <IslandPinned />
+        </div>
       </section>
 
       {reviews.length > 0 && (

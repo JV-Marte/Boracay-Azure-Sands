@@ -1,6 +1,6 @@
 import { isAfter, isValid, parseISO } from "date-fns";
 import { z } from "zod";
-import { PRICING } from "@/lib/constants";
+import { CAFE_PRICING, PRICING } from "@/lib/constants";
 
 const isoDate = z
   .string()
@@ -145,6 +145,108 @@ export const promoCodeSchema = z
 export const bookingAdminUpdateSchema = z.object({
   booking_status: z.enum(["pending", "confirmed", "cancelled", "completed"]).optional(),
   payment_status: z.enum(["pending", "paid", "refunded", "failed"]).optional(),
+});
+
+
+/* ── Azure Sands Fitness ──────────────────────────────────────────────────── */
+
+const phoneField = z
+  .string()
+  .trim()
+  .min(7, "Enter a valid phone number")
+  .max(30)
+  .regex(/^[+\d][\d\s\-()]+$/, "Enter a valid phone number");
+
+export const gymSignupSchema = z.object({
+  planId: z.string().min(1, "Choose a membership"),
+  fullName: z.string().trim().min(2, "Please enter your full name").max(120),
+  email: z.email("Enter a valid email address").max(200),
+  phone: phoneField,
+  preferredStart: isoDate,
+  goal: z.string().trim().max(600).optional().or(z.literal("")),
+  isHotelGuest: z.boolean().default(false),
+});
+
+export type GymSignupRequest = z.infer<typeof gymSignupSchema>;
+
+export const gymSignupAdminUpdateSchema = z.object({
+  status: z.enum(["new", "contacted", "enrolled", "declined"]),
+});
+
+/* ── Azure Sands Cafe ─────────────────────────────────────────────────────── */
+
+const cartLineSchema = z.object({
+  itemId: z.string().min(1),
+  qty: z.coerce.number().int().min(1).max(CAFE_PRICING.maxLineQty),
+  notes: z.string().trim().max(200).optional().or(z.literal("")),
+});
+
+const orderBaseFields = {
+  lines: z.array(cartLineSchema).min(1, "Your cart is empty").max(CAFE_PRICING.maxLines),
+  notes: z.string().trim().max(500).optional().or(z.literal("")),
+};
+
+/**
+ * Each fulfillment mode asks for different things, so the payload is a
+ * discriminated union rather than one object full of optional fields.
+ */
+export const foodOrderSchema = z.discriminatedUnion("fulfillmentType", [
+  z.object({
+    ...orderBaseFields,
+    fulfillmentType: z.literal("room_delivery"),
+    bookingReference: z
+      .string()
+      .trim()
+      .min(6, "Enter your booking reference (e.g. ASB-7KQ2MX9C)")
+      .max(20),
+    email: z.email("Enter the email used for the booking"),
+    roomNote: z.string().trim().max(200).optional().or(z.literal("")),
+  }),
+  z.object({
+    ...orderBaseFields,
+    fulfillmentType: z.literal("pickup"),
+    customerName: z.string().trim().min(2, "Please enter your name").max(120),
+    customerPhone: phoneField,
+    pickupTime: z
+      .string()
+      .regex(/^\d{2}:\d{2}$/, "Choose a pickup time")
+      .optional()
+      .or(z.literal("")),
+  }),
+  z.object({
+    ...orderBaseFields,
+    fulfillmentType: z.literal("island_delivery"),
+    customerName: z.string().trim().min(2, "Please enter your name").max(120),
+    customerPhone: phoneField,
+    deliveryAddress: z
+      .string()
+      .trim()
+      .min(10, "Give us a street and barangay we can find")
+      .max(300),
+    landmark: z.string().trim().max(160).optional().or(z.literal("")),
+  }),
+]);
+
+export type FoodOrderRequest = z.infer<typeof foodOrderSchema>;
+
+export const foodOrderLookupSchema = z.object({
+  reference: z
+    .string()
+    .trim()
+    .min(6, "Enter your order reference (e.g. RSC-7KQ2MX9C)")
+    .max(20),
+  phone: z.string().trim().min(4, "Enter the phone number on the order").max(30),
+});
+
+export const foodOrderAdminUpdateSchema = z.object({
+  status: z.enum([
+    "received",
+    "preparing",
+    "ready",
+    "out_for_delivery",
+    "completed",
+    "cancelled",
+  ]),
 });
 
 export { PRICING };

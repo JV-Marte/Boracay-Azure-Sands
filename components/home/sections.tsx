@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Accordion } from "@/components/ui/Accordion";
 import { ButtonLink } from "@/components/ui/Button";
 import { FAQS } from "@/lib/data/faqs";
-import { PRICING, SITE } from "@/lib/constants";
+import { CAFE, GYM, PRICING, SITE } from "@/lib/constants";
 
 // ---------------------------------------------------------------------------
 // Bento. grid-flow-dense, interlocking spans:
@@ -31,7 +31,7 @@ export function BentoSection() {
           className="group relative min-h-[26rem] overflow-hidden rounded-[1.75rem] bg-ink-900 md:col-span-2 md:row-span-2 md:min-h-0"
         >
           <Image
-            src="/images/rooms/premium-loft/interior.png"
+            src="/images/rooms/premium-loft/interior.jpg"
             alt="Premium Loft two-level layout with kitchen, dining table, and staircase"
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
@@ -59,7 +59,7 @@ export function BentoSection() {
           className="group relative min-h-[18rem] overflow-hidden rounded-[1.75rem] bg-ink-900 md:col-span-2 md:min-h-0"
         >
           <Image
-            src="/images/rooms/ocean-view-suite/view.png"
+            src="/images/rooms/ocean-view-suite/view.jpg"
             alt="Turquoise sea beyond the palms from the Ocean View Suite balcony"
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
@@ -127,7 +127,7 @@ export function BentoSection() {
           </div>
           <div className="group relative hidden w-[38%] overflow-hidden lg:block">
             <Image
-              src="/images/rooms/ocean-view-suite/balcony.png"
+              src="/images/rooms/ocean-view-suite/balcony.jpg"
               alt="Ocean-facing private balcony of the Ocean View Suite"
               fill
               sizes="30vw"
@@ -135,6 +135,83 @@ export function BentoSection() {
             />
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// The two venues on the ground floor. They live at /cafe and /gym with their
+// own layouts, so this is the main site's front door to both.
+
+const venues = [
+  {
+    href: "/cafe",
+    image: "/images/cafe/hero.jpg",
+    alt: "Azure Sands Cafe dining room with rattan pendants and garden windows",
+    name: CAFE.name,
+    hours: CAFE.hoursLabel,
+    body: "Filipino favourites, sizzling plates, and all-day breakfast. Order from your phone for pickup, island delivery, or straight to your room, charged to your stay.",
+    cta: "See the menu",
+    span: "lg:col-span-7",
+  },
+  {
+    href: "/gym",
+    image: "/images/gym/hero.jpg",
+    alt: "Azure Sands Fitness cardio deck and strength racks beside floor-to-ceiling palms",
+    name: GYM.name,
+    hours: GYM.hoursLabel,
+    body: "Free weights, a cardio deck, functional turf, and coached classes six days a week. Guests train at ₱150 a day, or join monthly.",
+    cta: "Explore the gym",
+    span: "lg:col-span-5",
+  },
+];
+
+export function OnPropertySection() {
+  return (
+    <section className="mx-auto max-w-7xl px-5 py-32 sm:px-8 md:py-48">
+      <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <h2 className="max-w-3xl text-[clamp(2.5rem,5vw,4.5rem)] font-medium leading-[0.98] tracking-[-0.045em] text-ink-900">
+          A cafe and a gym, one floor down
+        </h2>
+        <p className="max-w-sm text-lg leading-relaxed text-stone-500">
+          Two more reasons not to leave the building. Both open to guests and
+          walk-ins, both bookable from your phone.
+        </p>
+      </div>
+
+      <div className="mt-16 grid gap-3 md:mt-20 lg:grid-cols-12">
+        {venues.map((venue) => (
+          <Link
+            key={venue.href}
+            href={venue.href}
+            className={`group relative isolate flex min-h-[30rem] flex-col justify-end overflow-hidden rounded-[1.75rem] bg-ink-900 p-7 md:min-h-[36rem] md:p-10 ${venue.span}`}
+          >
+            <Image
+              src={venue.image}
+              alt={venue.alt}
+              fill
+              sizes="(min-width: 1024px) 60vw, 100vw"
+              className="-z-10 object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950/90 via-ink-950/35 to-transparent"
+            />
+            <p className="text-sm font-medium text-white/85">{venue.hours}</p>
+            <h3 className="mt-3 text-3xl font-medium leading-[1.02] tracking-[-0.035em] text-white md:text-[2.75rem]">
+              {venue.name}
+            </h3>
+            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/75">{venue.body}</p>
+            <span className="mt-8 inline-flex h-12 w-fit items-center gap-2 rounded-full bg-sand-50 pl-5 pr-4 text-[15px] font-medium text-ink-950 transition-colors group-hover:bg-white">
+              {venue.cta}
+              <ArrowUpRight
+                className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            </span>
+          </Link>
+        ))}
       </div>
     </section>
   );
@@ -173,7 +250,7 @@ export function CtaSection() {
   return (
     <section className="grain relative isolate overflow-hidden bg-ink-950">
       <Image
-        src="/images/about-exterior-v2.png"
+        src="/images/about-exterior-v2.jpg"
         alt=""
         fill
         sizes="100vw"

@@ -139,7 +139,7 @@ export interface AdminStats {
 export interface GalleryImage {
   src: string;
   alt: string;
-  category: "rooms" | "views" | "bathrooms";
+  category: "rooms" | "views" | "bathrooms" | "dining" | "fitness";
 }
 
 export interface Attraction {
@@ -154,3 +154,6 @@ export interface Faq {
   answer: string;
   category: string;
 }
+
+export * from "./gym";
+export * from "./food";

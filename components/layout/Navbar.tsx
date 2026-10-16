@@ -4,30 +4,9 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Logo } from "@/components/ui/Logo";
 import { NAV_LINKS, SITE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-
-/** Two stacked crescents: a wave over sand. Inherits currentColor. */
-function Mark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden className={className}>
-      <path
-        d="M2.5 13.5c2.4-2.6 4.8-2.6 7.2 0s4.8 2.6 7.2 0 3.6-1.9 4.6-.9"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <path
-        d="M2.5 18.5c2.4-2.6 4.8-2.6 7.2 0s4.8 2.6 7.2 0 3.6-1.9 4.6-.9"
-        stroke="currentColor"
-        strokeOpacity=".45"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <circle cx="16.5" cy="6.5" r="2.5" fill="currentColor" />
-    </svg>
-  );
-}
 
 export function Navbar() {
   const pathname = usePathname();
@@ -71,15 +50,8 @@ export function Navbar() {
               : "border-white/15 bg-ink-950/25",
           )}
         >
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 text-[17px] font-bold tracking-[-0.02em] text-white"
-          >
-            <Mark className="size-6 text-ocean-300" />
-            <span>
-              Azure Sands
-              <span className="ml-2 hidden font-medium text-white/45 sm:inline">Boracay</span>
-            </span>
+          <Link href="/" className="shrink-0">
+            <Logo brand="main" tone="light" priority className="h-8 sm:h-9" />
           </Link>
 
           <ul className="hidden items-center gap-0.5 lg:flex">

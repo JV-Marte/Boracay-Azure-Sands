@@ -168,8 +168,8 @@ export function RoomForm({ room }: RoomFormProps) {
         name="images"
         required
         rows={3}
-        defaultValue={room?.images.join("\n") ?? "/images/rooms/deluxe-studio/interior.png"}
-        hint="Paths under /public, e.g. /images/rooms/deluxe-studio/interior.png. List the homepage cover image first."
+        defaultValue={room?.images.join("\n") ?? "/images/rooms/deluxe-studio/interior.jpg"}
+        hint="Paths under /public, e.g. /images/rooms/deluxe-studio/interior.jpg. List the homepage cover image first."
       />
 
       <div className="flex gap-3">

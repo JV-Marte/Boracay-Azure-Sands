@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { NAV_LINKS, SITE } from "@/lib/constants";
+import { Logo } from "@/components/ui/Logo";
+import { SITE } from "@/lib/constants";
 
 const stayLinks = [
   { href: "/rooms", label: "Rooms & suites" },
@@ -8,15 +9,29 @@ const stayLinks = [
   { href: "/manage-booking", label: "Manage booking" },
 ];
 
-const exploreLinks = NAV_LINKS.filter((l) => l.href !== "/rooms");
+const exploreLinks = [
+  { href: "/gallery", label: "Gallery" },
+  { href: "/about", label: "About" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
+];
+
+/** The two venues on the ground floor, each with its own site. */
+const onPropertyLinks = [
+  { href: "/cafe", label: "Azure Sands Cafe" },
+  { href: "/cafe/menu", label: "Cafe menu" },
+  { href: "/gym", label: "Azure Sands Fitness" },
+  { href: "/gym/schedule", label: "Class schedule" },
+];
 
 export function Footer() {
   return (
     <footer className="grain ambient-lagoon overflow-hidden text-sand-100">
       <div className="relative z-10 mx-auto max-w-7xl px-5 pt-24 sm:px-8 md:pt-32">
-        <div className="grid gap-14 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <p className="max-w-md text-[clamp(1.75rem,3vw,2.5rem)] font-medium leading-[1.08] tracking-[-0.03em] text-white">
+        <div className="grid gap-14 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+          <div className="sm:col-span-2 lg:col-span-4">
+            <Logo brand="main" tone="light" className="h-10" />
+            <p className="mt-10 max-w-md text-[clamp(1.625rem,2.4vw,2.125rem)] font-medium leading-[1.08] tracking-[-0.03em] text-white">
               Suites that live like homes, run like a hotel.
             </p>
             <a
@@ -31,7 +46,7 @@ export function Footer() {
             </a>
           </div>
 
-          <nav aria-label="Stay" className="md:col-span-2 md:col-start-7">
+          <nav aria-label="Stay" className="lg:col-span-2 lg:col-start-5">
             <h2 className="text-sm font-medium text-white/40">Stay</h2>
             <ul className="mt-5 space-y-3">
               {stayLinks.map((link) => (
@@ -47,7 +62,7 @@ export function Footer() {
             </ul>
           </nav>
 
-          <nav aria-label="Explore" className="md:col-span-2">
+          <nav aria-label="Explore" className="lg:col-span-2">
             <h2 className="text-sm font-medium text-white/40">Explore</h2>
             <ul className="mt-5 space-y-3">
               {exploreLinks.map((link) => (
@@ -63,7 +78,23 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="md:col-span-2">
+          <nav aria-label="On property" className="lg:col-span-2">
+            <h2 className="text-sm font-medium text-white/40">On property</h2>
+            <ul className="mt-5 space-y-3">
+              {onPropertyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-[15px] text-sand-100/80 transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="lg:col-span-2">
             <h2 className="text-sm font-medium text-white/40">Front desk</h2>
             <ul className="mt-5 space-y-3 text-[15px] text-sand-100/80">
               <li>

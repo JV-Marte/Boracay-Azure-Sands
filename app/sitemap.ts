@@ -15,6 +15,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE.url}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE.url}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE.url}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    // Azure Sands Fitness
+    { url: `${SITE.url}/gym`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE.url}/gym/schedule`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE.url}/gym/join`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    // Azure Sands Cafe
+    { url: `${SITE.url}/cafe`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE.url}/cafe/menu`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
+    { url: `${SITE.url}/cafe/track`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
   ];
 
   const roomPages: MetadataRoute.Sitemap = rooms.map((room) => ({
