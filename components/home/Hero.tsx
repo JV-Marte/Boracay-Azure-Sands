@@ -44,8 +44,8 @@ export function Hero() {
       <div data-hero-media className="absolute inset-0 -z-0">
         <div data-hero-image className="absolute inset-0">
           <Image
-            src="/images/boracay-hero-v2.jpg"
-            alt="White Beach, Boracay: turquoise water meeting powder-white sand under a leaning palm"
+            src="/images/about-exterior-v2.jpg"
+            alt="Azure Sands Boracay: the condotel's white facade and balconies framed by tropical gardens"
             fill
             priority
             sizes="100vw"

@@ -250,7 +250,7 @@ export function CtaSection() {
   return (
     <section className="grain relative isolate overflow-hidden bg-ink-950">
       <Image
-        src="/images/about-exterior-v2.jpg"
+        src="/images/boracay-hero-v2.jpg"
         alt=""
         fill
         sizes="100vw"
