@@ -91,7 +91,7 @@ export default async function RoomDetailPage({
               <Badge tone="sunset">Ocean view</Badge>
             )}
           </div>
-          <h1 className="mt-2.5 font-display text-4xl font-semibold tracking-tight text-stone-900 sm:text-5xl">
+          <h1 className="mt-3 font-display text-[clamp(2.75rem,5.5vw,4.75rem)] font-medium leading-[0.98] tracking-[-0.045em] text-ink-900">
             {room.name}
           </h1>
           <ul className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[15px] text-stone-500">
@@ -116,7 +116,7 @@ export default async function RoomDetailPage({
           <RoomGallery images={room.images} roomName={room.name} />
 
           <section aria-labelledby="room-about">
-            <h2 id="room-about" className="font-display text-2xl font-semibold text-stone-900">
+            <h2 id="room-about" className="font-display text-2xl font-medium text-ink-900">
               About this suite
             </h2>
             <p className="mt-4 max-w-prose text-[17px] leading-relaxed text-stone-600">
@@ -125,7 +125,7 @@ export default async function RoomDetailPage({
           </section>
 
           <section aria-labelledby="room-amenities">
-            <h2 id="room-amenities" className="font-display text-2xl font-semibold text-stone-900">
+            <h2 id="room-amenities" className="font-display text-2xl font-medium text-ink-900">
               Amenities
             </h2>
             <ul className="mt-5 grid gap-x-6 gap-y-3.5 sm:grid-cols-2 lg:grid-cols-3">
@@ -147,7 +147,7 @@ export default async function RoomDetailPage({
 
           <section aria-labelledby="room-rules" className="grid gap-8 sm:grid-cols-2">
             <div>
-              <h2 id="room-rules" className="font-display text-2xl font-semibold text-stone-900">
+              <h2 id="room-rules" className="font-display text-2xl font-medium text-ink-900">
                 House rules
               </h2>
               <ul className="mt-5 space-y-3.5">
@@ -160,7 +160,7 @@ export default async function RoomDetailPage({
               </ul>
             </div>
             <div>
-              <h2 className="font-display text-2xl font-semibold text-stone-900">
+              <h2 className="font-display text-2xl font-medium text-ink-900">
                 Cancellation policy
               </h2>
               <ul className="mt-5 space-y-3.5 text-[15px] text-stone-600">
@@ -197,7 +197,7 @@ export default async function RoomDetailPage({
 
       {related.length > 0 && (
         <section aria-labelledby="related-rooms" className="mt-20">
-          <h2 id="related-rooms" className="font-display text-2xl font-semibold text-stone-900">
+          <h2 id="related-rooms" className="font-display text-2xl font-medium text-ink-900">
             Other suites you might like
           </h2>
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

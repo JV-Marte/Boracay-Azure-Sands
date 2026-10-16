@@ -38,7 +38,7 @@ export default async function AdminBookingsPage({
     <div className="mx-auto max-w-6xl">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="font-display text-3xl font-semibold text-stone-900">Bookings</h1>
+          <h1 className="font-display text-3xl font-medium text-ink-900">Bookings</h1>
           <p className="mt-1 text-sm text-stone-500">
             Confirm, cancel, and track payments for every reservation.
           </p>

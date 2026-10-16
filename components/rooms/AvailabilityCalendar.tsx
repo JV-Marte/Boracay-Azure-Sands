@@ -76,7 +76,7 @@ export function AvailabilityCalendar({ ranges }: AvailabilityCalendarProps) {
   return (
     <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-soft">
       <div className="flex items-center justify-between">
-        <h3 className="font-display text-lg font-semibold text-stone-900">
+        <h3 className="font-display text-lg font-medium text-ink-900">
           Availability
         </h3>
         <div className="flex gap-1">

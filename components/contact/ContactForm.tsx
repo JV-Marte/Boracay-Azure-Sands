@@ -52,7 +52,7 @@ export function ContactForm() {
         <div className="flex size-12 items-center justify-center rounded-full bg-emerald-100">
           <MailCheck className="size-6 text-emerald-700" aria-hidden />
         </div>
-        <h3 className="mt-4 font-display text-xl font-semibold text-emerald-900">
+        <h3 className="mt-4 font-display text-xl font-medium text-emerald-900">
           Message sent — salamat!
         </h3>
         <p className="mt-2 max-w-sm text-sm leading-relaxed text-emerald-800">

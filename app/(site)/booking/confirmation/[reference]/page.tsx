@@ -47,7 +47,7 @@ export default async function ConfirmationPage({
         <div className="flex size-12 items-center justify-center rounded-full bg-ocean-50">
           <Search className="size-6 text-ocean-600" aria-hidden />
         </div>
-        <h1 className="mt-5 font-display text-3xl font-semibold text-stone-900">
+        <h1 className="mt-5 font-display text-3xl font-medium text-ink-900">
           We couldn’t open that confirmation
         </h1>
         <p className="mt-3 max-w-md text-stone-500">
@@ -83,7 +83,7 @@ export default async function ConfirmationPage({
         <div className="flex size-14 items-center justify-center rounded-full bg-emerald-50">
           <CircleCheck className="size-7 text-emerald-600" aria-hidden />
         </div>
-        <h1 className="mt-5 font-display text-4xl font-semibold tracking-tight text-stone-900">
+        <h1 className="mt-5 font-display text-4xl font-medium tracking-[-0.03em] text-ink-900">
           See you on the island, {booking.guest_name.split(" ")[0]}!
         </h1>
         <p className="mt-3 max-w-lg text-stone-500">
@@ -115,7 +115,7 @@ export default async function ConfirmationPage({
         )}
         <div className="p-6 sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="font-display text-2xl font-semibold text-stone-900">
+            <h2 className="font-display text-2xl font-medium text-ink-900">
               {room?.name ?? "Your suite"}
             </h2>
             <div className="flex gap-2">

@@ -10,14 +10,11 @@ export const metadata: Metadata = {
 
 export default function ManageBookingPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-      <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-ocean-600">
-        Manage booking
-      </p>
-      <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight text-stone-900 sm:text-5xl">
+    <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 sm:px-8 md:pb-32">
+      <h1 className="font-display text-[clamp(2.75rem,6vw,5.25rem)] font-medium leading-[0.98] tracking-[-0.045em] text-ink-900 text-balance">
         Your booking, your rules
       </h1>
-      <p className="mt-4 text-lg leading-relaxed text-stone-500">
+      <p className="mt-6 max-w-2xl text-lg leading-relaxed text-stone-500">
         Check your details, update guest information, or cancel — no account,
         no phone queue.
       </p>

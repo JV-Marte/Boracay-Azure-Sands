@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { ToastProvider } from "@/components/ui/Toast";
 import { SITE } from "@/lib/constants";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+// Cabinet Grotesk (Fontshare, ITF Free Font License), self-hosted
+const cabinet = localFont({
+  variable: "--font-cabinet",
   display: "swap",
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  display: "swap",
-  axes: ["opsz"],
+  src: [
+    { path: "./fonts/CabinetGrotesk-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/CabinetGrotesk-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/CabinetGrotesk-700.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/CabinetGrotesk-800.woff2", weight: "800", style: "normal" },
+  ],
 });
 
 export const metadata: Metadata = {
@@ -45,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable} h-full`}>
+    <html lang="en" className={`${cabinet.variable} h-full`}>
       <body className="flex min-h-full flex-col">
         <ToastProvider>{children}</ToastProvider>
       </body>

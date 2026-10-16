@@ -21,7 +21,7 @@ export function RoomCard({ room, available, searchParams, priority }: RoomCardPr
   const highlightAmenities = room.amenities.slice(0, 3).map(getAmenity);
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-soft transition-shadow duration-300 hover:shadow-lift">
+    <article className="group flex flex-col overflow-hidden rounded-[1.75rem] border border-sand-200 bg-white transition-colors duration-500 hover:border-ocean-300">
       <Link
         href={`/rooms/${room.slug}${suffix}`}
         className="relative block aspect-[4/3] overflow-hidden"
@@ -34,7 +34,7 @@ export function RoomCard({ room, available, searchParams, priority }: RoomCardPr
           fill
           priority={priority}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
         {available === false && (
           <div className="absolute inset-0 flex items-center justify-center bg-ocean-950/55 backdrop-blur-[2px]">
@@ -50,9 +50,9 @@ export function RoomCard({ room, available, searchParams, priority }: RoomCardPr
         )}
       </Link>
 
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-6">
         <div className="flex items-baseline justify-between gap-3">
-          <h3 className="font-display text-xl font-semibold text-stone-900">
+          <h3 className="font-display text-2xl font-medium text-ink-900">
             <Link
               href={`/rooms/${room.slug}${suffix}`}
               className="hover:text-ocean-700 transition-colors"
@@ -61,7 +61,7 @@ export function RoomCard({ room, available, searchParams, priority }: RoomCardPr
             </Link>
           </h3>
           <p className="shrink-0 text-right">
-            <span className="text-lg font-semibold text-ocean-800">
+            <span className="text-lg font-medium text-ink-900">
               {formatPHP(room.price_per_night)}
             </span>
             <span className="text-xs text-stone-400"> / night</span>

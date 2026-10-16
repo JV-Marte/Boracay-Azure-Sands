@@ -36,7 +36,7 @@ function MiniList({
 }) {
   return (
     <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-soft">
-      <h2 className="font-display text-lg font-semibold text-stone-900">{title}</h2>
+      <h2 className="font-display text-lg font-medium text-ink-900">{title}</h2>
       {bookings.length === 0 ? (
         <p className="mt-3 text-sm text-stone-400">{emptyText}</p>
       ) : (
@@ -71,7 +71,7 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="mx-auto max-w-6xl">
-      <h1 className="font-display text-3xl font-semibold text-stone-900">Dashboard</h1>
+      <h1 className="font-display text-3xl font-medium text-ink-900">Dashboard</h1>
       <p className="mt-1 text-sm text-stone-500">
         What’s happening at Azure Sands right now.
       </p>
@@ -122,7 +122,7 @@ export default async function AdminDashboardPage() {
 
       <div className="mt-8">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="font-display text-xl font-semibold text-stone-900">
+          <h2 className="font-display text-xl font-medium text-ink-900">
             Recent bookings
           </h2>
           <Link

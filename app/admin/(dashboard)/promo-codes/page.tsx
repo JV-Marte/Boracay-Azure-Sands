@@ -8,7 +8,7 @@ export default async function PromoCodesPage() {
 
   return (
     <div className="mx-auto max-w-6xl">
-      <h1 className="font-display text-3xl font-semibold text-stone-900">Promo codes</h1>
+      <h1 className="font-display text-3xl font-medium text-ink-900">Promo codes</h1>
       <p className="mt-1 text-sm text-stone-500">
         Discounts guests can apply at checkout. They stack with the automatic
         long-stay discount.

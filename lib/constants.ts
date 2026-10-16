@@ -14,7 +14,8 @@ export const SITE = {
   checkOutTime: "11:00 AM",
   supportHours: "Front desk: 7:00 AM – 10:00 PM (GMT+8), daily",
   mapsEmbedUrl:
-    process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL ??
+    // `||` not `??`: an empty env var would otherwise render <iframe src="">
+    process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL ||
     "https://www.google.com/maps?q=White+Beach,+Boracay,+Malay,+Aklan,+Philippines&output=embed",
 } as const;
 

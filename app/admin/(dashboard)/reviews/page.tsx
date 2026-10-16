@@ -8,7 +8,7 @@ export default async function AdminReviewsPage() {
 
   return (
     <div className="mx-auto max-w-6xl">
-      <h1 className="font-display text-3xl font-semibold text-stone-900">Reviews</h1>
+      <h1 className="font-display text-3xl font-medium text-ink-900">Reviews</h1>
       <p className="mt-1 text-sm text-stone-500">
         Only approved reviews appear on the website. Keep them honest — mixed
         ratings build more trust than a wall of five stars.

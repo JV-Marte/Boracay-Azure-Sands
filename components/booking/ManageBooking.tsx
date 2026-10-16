@@ -113,7 +113,7 @@ export function ManageBooking() {
     <div className="space-y-8">
       {/* Lookup */}
       <Card className="p-6 sm:p-8">
-        <h2 className="font-display text-xl font-semibold text-stone-900">
+        <h2 className="font-display text-xl font-medium text-ink-900">
           Find your booking
         </h2>
         <p className="mt-1 text-sm text-stone-500">
@@ -152,7 +152,7 @@ export function ManageBooking() {
         <Card className="p-6 sm:p-8 animate-fade-up">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <h2 className="font-display text-2xl font-semibold text-stone-900">
+              <h2 className="font-display text-2xl font-medium text-ink-900">
                 {room?.name ?? "Your suite"}
               </h2>
               <p className="mt-1 font-mono text-sm tracking-widest text-stone-500">

@@ -12,23 +12,20 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="max-w-2xl">
-        <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-ocean-600">
-          Contact
-        </p>
-        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight text-stone-900 sm:text-5xl">
+    <div className="mx-auto max-w-7xl px-4 pb-24 pt-6 sm:px-8 md:pb-32">
+      <div className="max-w-5xl">
+        <h1 className="font-display text-[clamp(2.75rem,6vw,5.25rem)] font-medium leading-[0.98] tracking-[-0.045em] text-ink-900 text-balance">
           Talk to a human on the island
         </h1>
-        <p className="mt-4 text-lg leading-relaxed text-stone-500">
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-stone-500">
           Transfers, group stays, celebrations, or just picking the right suite
-          â send us a note and we’ll sort it out.
+          — send us a note and we’ll sort it out.
         </p>
       </div>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-[1.2fr_1fr]">
         <Card className="p-6 sm:p-8">
-          <h2 className="font-display text-xl font-semibold text-stone-900">
+          <h2 className="font-display text-xl font-medium text-ink-900">
             Send us a message
           </h2>
           <p className="mt-1 mb-6 text-sm text-stone-500">
@@ -39,7 +36,7 @@ export default function ContactPage() {
 
         <div className="space-y-6">
           <Card className="p-6">
-            <h2 className="font-display text-lg font-semibold text-stone-900">
+            <h2 className="font-display text-lg font-medium text-ink-900">
               Reach us directly
             </h2>
             <ul className="mt-4 space-y-4 text-[15px]">
@@ -80,7 +77,7 @@ export default function ContactPage() {
           </Card>
 
           <Card className="p-6">
-            <h2 className="font-display text-lg font-semibold text-stone-900">
+            <h2 className="font-display text-lg font-medium text-ink-900">
               Hours & timing
             </h2>
             <ul className="mt-4 space-y-3 text-[15px] text-stone-700">

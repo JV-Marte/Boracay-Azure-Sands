@@ -45,7 +45,7 @@ export function HeroSearch() {
     <form
       onSubmit={onSubmit}
       aria-label="Check availability"
-      className="grid gap-3 rounded-2xl bg-white/95 p-4 shadow-lift backdrop-blur-sm sm:grid-cols-2 sm:gap-4 sm:p-5 lg:grid-cols-[1fr_1fr_auto_auto] lg:items-end"
+      className="grid gap-4 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_auto_auto] lg:items-end"
     >
       <InputField
         label="Check-in"
@@ -75,7 +75,6 @@ export function HeroSearch() {
       </SelectField>
       <Button
         type="submit"
-        size="lg"
         loading={isSubmitting}
         className="w-full self-end lg:w-auto"
       >

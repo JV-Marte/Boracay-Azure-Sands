@@ -25,7 +25,7 @@ export default async function AdminLoginPage() {
           <div className="flex size-12 items-center justify-center rounded-2xl bg-ocean-800">
             <TreePalm className="size-6 text-ocean-200" aria-hidden />
           </div>
-          <h1 className="mt-4 font-display text-2xl font-semibold text-white">
+          <h1 className="mt-4 font-display text-2xl font-medium text-white">
             Azure Sands Staff
           </h1>
           <p className="mt-1 text-sm text-ocean-300/80">

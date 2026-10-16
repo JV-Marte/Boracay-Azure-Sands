@@ -1,18 +1,13 @@
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { Hero } from "@/components/home/Hero";
 import { HeroSearch } from "@/components/home/HeroSearch";
-import {
-  AmenitiesSection,
-  CtaSection,
-  FaqPreview,
-  GalleryPreview,
-  LocationSection,
-  ReviewsSection,
-  WhyStay,
-} from "@/components/home/sections";
-import { RoomCard } from "@/components/rooms/RoomCard";
-import { ButtonLink } from "@/components/ui/Button";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { IslandPinned } from "@/components/home/IslandPinned";
+import { Marquee } from "@/components/home/Marquee";
+import { ReviewCarousel } from "@/components/home/ReviewCarousel";
+import { ScrubReveal } from "@/components/home/ScrubReveal";
+import { SuiteAccordion } from "@/components/home/SuiteAccordion";
+import { BentoSection, CtaSection, FaqSection } from "@/components/home/sections";
 import { SITE } from "@/lib/constants";
 import { listApprovedReviews } from "@/services/reviews";
 import { listRooms } from "@/services/rooms";
@@ -59,64 +54,78 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(lodgingJsonLd) }}
       />
 
-      {/* Hero */}
-      <section className="relative isolate flex min-h-[92svh] items-center">
-        <Image
-          src="/images/about-exterior-v2.png"
-          alt="Azure Sands condotel exterior surrounded by tropical greenery"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-ocean-950/60 via-ocean-950/25 to-ocean-950/50" />
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-16 pt-32 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/80">
-              Boutique condotel · White Beach, Boracay
-            </p>
-            <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-6xl text-balance">
-              {SITE.tagline}
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/85">
-              Spacious island suites with kitchens and balconies, a pool for
-              lazy afternoons, and the beach a short stroll away — for
-              honeymoons, family trips, and month-long workations.
-            </p>
-          </div>
-          <div className="mt-10 max-w-4xl">
+      {/* Attention */}
+      <Hero />
+
+      <section id="plan" aria-labelledby="plan-heading" className="relative z-10 -mt-16 scroll-mt-28 px-3 sm:px-6">
+        <div className="mx-auto max-w-6xl rounded-[2rem] bg-sand-50 p-6 shadow-lift sm:p-8 lg:flex lg:items-end lg:gap-10 lg:p-10">
+          <h2
+            id="plan-heading"
+            className="mb-6 shrink-0 text-2xl font-medium leading-[1.05] tracking-[-0.03em] text-ink-900 lg:mb-1 lg:w-44"
+          >
+            When are you coming?
+          </h2>
+          <div className="flex-1">
             <HeroSearch />
           </div>
         </div>
       </section>
 
-      {/* Featured rooms */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHeading
-            align="left"
-            eyebrow="Rooms & suites"
-            title="Find the suite that fits your trip"
-            description="Four ways to stay — from a cozy studio for two to a loft that sleeps the whole barkada."
+      {/* Interest */}
+      <div className="pt-24 md:pt-32">
+        <Marquee />
+      </div>
+      <BentoSection />
+
+      <div className="grain ambient-lagoon overflow-hidden">
+        <section className="relative z-10 px-5 py-32 sm:px-8 md:py-48">
+          <ScrubReveal
+            text="We built Azure Sands for the trip that always felt too short. Suites with real kitchens and balconies, a pool for the slow hours, White Beach a short walk away, and a small team that knows your name by day two."
+            accent={["short", "two"]}
           />
-          <ButtonLink href="/rooms" variant="outline" size="sm">
-            All rooms
-            <ArrowRight className="size-4" aria-hidden />
-          </ButtonLink>
-        </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {rooms.slice(0, 4).map((room, i) => (
-            <RoomCard key={room.id} room={room} priority={i < 2} />
-          ))}
-        </div>
+        </section>
+
+        {/* Desire */}
+        <section className="relative z-10 px-5 pb-32 sm:px-8 md:pb-48">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+              <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-medium leading-[0.98] tracking-[-0.045em] text-white">
+                Four ways to stay
+              </h2>
+              <Link
+                href="/rooms"
+                className="group inline-flex items-center gap-2 border-b border-white/25 pb-1 text-lg text-white transition-colors hover:border-ocean-300 hover:text-ocean-200"
+              >
+                Compare every suite
+                <ArrowUpRight
+                  className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  aria-hidden
+                />
+              </Link>
+            </div>
+            <div className="mt-14 md:mt-20">
+              <SuiteAccordion rooms={rooms.slice(0, 4)} />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section className="mx-auto max-w-7xl px-5 py-32 sm:px-8 md:py-48">
+        <IslandPinned />
       </section>
 
-      <WhyStay />
-      <AmenitiesSection />
-      <GalleryPreview />
-      <LocationSection />
-      <ReviewsSection reviews={reviews} />
-      <FaqPreview />
+      {reviews.length > 0 && (
+        <section className="grain ambient-lagoon overflow-hidden px-5 py-32 sm:px-8 md:py-48">
+          <div className="relative z-10 mx-auto max-w-7xl">
+            <h2 className="sr-only">Guest reviews</h2>
+            <ReviewCarousel reviews={reviews} />
+          </div>
+        </section>
+      )}
+
+      <FaqSection />
+
+      {/* Action */}
       <CtaSection />
     </>
   );

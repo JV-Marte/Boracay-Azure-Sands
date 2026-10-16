@@ -15,7 +15,7 @@ export default async function EditRoomPage({
 
   return (
     <div className="mx-auto max-w-6xl">
-      <h1 className="font-display text-3xl font-semibold text-stone-900">
+      <h1 className="font-display text-3xl font-medium text-ink-900">
         Edit · {room.name}
       </h1>
       <p className="mt-1 text-sm text-stone-500">

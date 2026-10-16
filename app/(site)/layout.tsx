@@ -6,12 +6,14 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-ocean-800 focus:shadow-card"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-ink-900 focus:shadow-card"
       >
         Skip to main content
       </a>
       <Navbar />
-      <main id="main-content" className="flex-1">
+      {/* clip (not hidden) so off-screen motion never adds a horizontal scrollbar
+          while position: sticky keeps working on inner pages */}
+      <main id="main-content" className="w-full max-w-full flex-1 overflow-x-clip">
         {children}
       </main>
       <Footer />

@@ -59,7 +59,7 @@ export function BookingWidget({ room, unavailableRanges, initial }: BookingWidge
   return (
     <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-card sm:p-6">
       <p>
-        <span className="font-display text-2xl font-semibold text-stone-900">
+        <span className="font-display text-2xl font-medium text-ink-900">
           {formatPHP(room.price_per_night)}
         </span>
         <span className="text-sm text-stone-400"> / night</span>

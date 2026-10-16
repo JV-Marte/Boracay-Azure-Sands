@@ -88,7 +88,7 @@ export function AdminSidebar() {
     <>
       {/* Mobile top bar */}
       <div className="flex items-center justify-between bg-ocean-950 px-4 py-3 lg:hidden">
-        <Link href="/admin" className="flex items-center gap-2 font-display font-semibold text-white">
+        <Link href="/admin" className="flex items-center gap-2 font-display font-medium text-white">
           <TreePalm className="size-5 text-ocean-300" aria-hidden />
           Azure Sands Admin
         </Link>
@@ -110,7 +110,7 @@ export function AdminSidebar() {
       <aside className="sticky top-0 hidden h-svh w-60 shrink-0 flex-col bg-ocean-950 p-4 lg:flex">
         <Link
           href="/admin"
-          className="mb-6 flex items-center gap-2.5 px-2 font-display text-lg font-semibold text-white"
+          className="mb-6 flex items-center gap-2.5 px-2 font-display text-lg font-medium text-white"
         >
           <TreePalm className="size-6 text-ocean-300" aria-hidden />
           <span>

@@ -228,7 +228,7 @@ export function BookingWizard({ rooms, initial }: BookingWizardProps) {
           >
             <TriangleAlert className="mt-0.5 size-4.5 shrink-0" aria-hidden />
             <div>
-              <p className="font-semibold">Booking failed</p>
+              <p className="font-medium">Booking failed</p>
               <p className="mt-0.5">{submitError}</p>
             </div>
           </div>
@@ -237,7 +237,7 @@ export function BookingWizard({ rooms, initial }: BookingWizardProps) {
         <form onSubmit={onSubmit} noValidate className="mt-8">
           {/* ---- Step 1: Stay ---- */}
           <fieldset hidden={step !== 0}>
-            <legend className="font-display text-2xl font-semibold text-stone-900">
+            <legend className="font-display text-2xl font-medium text-ink-900">
               Choose your suite and dates
             </legend>
 
@@ -272,7 +272,7 @@ export function BookingWizard({ rooms, initial }: BookingWizardProps) {
                       className="hidden aspect-[4/3] w-24 rounded-xl object-cover sm:block"
                     />
                     <div className="min-w-0 flex-1">
-                      <p className="font-semibold text-stone-900">{r.name}</p>
+                      <p className="font-medium text-stone-900">{r.name}</p>
                       <p className="mt-0.5 text-[13px] text-stone-500">
                         Sleeps {r.max_guests} · {r.bed_summary} · {r.room_size} m²
                         {tooSmall && (
@@ -283,7 +283,7 @@ export function BookingWizard({ rooms, initial }: BookingWizardProps) {
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="font-semibold text-ocean-800">
+                      <p className="font-medium text-ocean-800">
                         {formatPHP(r.price_per_night)}
                       </p>
                       <p className="text-xs text-stone-400">/ night</p>
@@ -351,7 +351,7 @@ export function BookingWizard({ rooms, initial }: BookingWizardProps) {
 
           {/* ---- Step 2: Guest info ---- */}
           <fieldset hidden={step !== 1}>
-            <legend className="font-display text-2xl font-semibold text-stone-900">
+            <legend className="font-display text-2xl font-medium text-ink-900">
               Who’s checking in?
             </legend>
             <div className="mt-6 space-y-5">
@@ -408,7 +408,7 @@ export function BookingWizard({ rooms, initial }: BookingWizardProps) {
 
           {/* ---- Step 3: Review ---- */}
           <fieldset hidden={step !== 2}>
-            <legend className="font-display text-2xl font-semibold text-stone-900">
+            <legend className="font-display text-2xl font-medium text-ink-900">
               Review your stay
             </legend>
             {room && quote && (
@@ -416,7 +416,7 @@ export function BookingWizard({ rooms, initial }: BookingWizardProps) {
                 <div className="rounded-2xl border border-stone-200 bg-white p-5">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="font-semibold text-stone-900">{room.name}</p>
+                      <p className="font-medium text-stone-900">{room.name}</p>
                       <p className="mt-1 text-sm text-stone-500">
                         {formatDate(checkIn)} → {formatDate(checkOut)} ·{" "}
                         {pluralize(nights, "night")} · {pluralize(Number(guestCount), "guest")}
@@ -490,7 +490,7 @@ export function BookingWizard({ rooms, initial }: BookingWizardProps) {
 
           {/* ---- Step 4: Payment ---- */}
           <fieldset hidden={step !== 3}>
-            <legend className="font-display text-2xl font-semibold text-stone-900">
+            <legend className="font-display text-2xl font-medium text-ink-900">
               How would you like to pay?
             </legend>
             <div className="mt-6 space-y-3" role="radiogroup" aria-label="Payment method">
@@ -567,7 +567,7 @@ export function BookingWizard({ rooms, initial }: BookingWizardProps) {
       {/* Sticky summary */}
       <aside className="lg:sticky lg:top-24 lg:self-start" aria-label="Booking summary">
         <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-card">
-          <h2 className="font-display text-lg font-semibold text-stone-900">
+          <h2 className="font-display text-lg font-medium text-ink-900">
             Booking summary
           </h2>
           {room ? (

@@ -1,34 +1,40 @@
 @import "tailwindcss";
 
 @theme {
-  /* Typography */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  /* Typography — Cabinet Grotesk for everything; display gets tighter tracking */
+  --font-sans: var(--font-cabinet), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cabinet), ui-sans-serif, system-ui, sans-serif;
 
-  /* Ocean — primary brand blue */
-  --color-ocean-50: #eef7f9;
-  --color-ocean-100: #d9edf2;
-  --color-ocean-200: #b3dbe6;
-  --color-ocean-300: #7fc2d4;
-  --color-ocean-400: #47a3bd;
-  --color-ocean-500: #2b87a3;
-  --color-ocean-600: #1f6d88;
-  --color-ocean-700: #1d5970;
-  --color-ocean-800: #1d4a5d;
-  --color-ocean-900: #1c3e4e;
-  --color-ocean-950: #0e2833;
+  /* Ink — the night-lagoon near-black used for dark chapters and primary buttons */
+  --color-ink-700: #183438;
+  --color-ink-800: #102629;
+  --color-ink-900: #0a1a1c;
+  --color-ink-950: #050f10;
 
-  /* Sand — warm neutral */
-  --color-sand-50: #faf8f4;
-  --color-sand-100: #f4efe6;
-  --color-sand-200: #e8dcc8;
-  --color-sand-300: #d9c6a6;
-  --color-sand-400: #c8ab82;
-  --color-sand-500: #ba9767;
-  --color-sand-600: #a88152;
-  --color-sand-700: #8c6844;
-  --color-sand-800: #72553c;
-  --color-sand-900: #5d4733;
+  /* Ocean — retuned to a lagoon teal; the single accent family */
+  --color-ocean-50: #ecf8f6;
+  --color-ocean-100: #d2efeb;
+  --color-ocean-200: #a6dfd8;
+  --color-ocean-300: #6fc9c0;
+  --color-ocean-400: #3fb0a6;
+  --color-ocean-500: #22948b;
+  --color-ocean-600: #187770;
+  --color-ocean-700: #155f5a;
+  --color-ocean-800: #144c49;
+  --color-ocean-900: #123f3d;
+  --color-ocean-950: #071a1b;
+
+  /* Sand — retuned to salt-bone neutrals */
+  --color-sand-50: #f7f4ee;
+  --color-sand-100: #efe9dd;
+  --color-sand-200: #e2d8c5;
+  --color-sand-300: #cfc0a3;
+  --color-sand-400: #b9a37e;
+  --color-sand-500: #a68b63;
+  --color-sand-600: #8d7350;
+  --color-sand-700: #735c42;
+  --color-sand-800: #5e4b38;
+  --color-sand-900: #4d3e30;
 
   /* Palm — green accent */
   --color-palm-50: #f2f7f3;
@@ -42,7 +48,7 @@
   --color-palm-800: #274334;
   --color-palm-900: #21382c;
 
-  /* Sunset — warm accent */
+  /* Sunset — warm accent (ratings, alerts) */
   --color-sunset-50: #fef6ee;
   --color-sunset-100: #fdead6;
   --color-sunset-200: #fad1ac;
@@ -54,14 +60,16 @@
   --color-sunset-800: #93321a;
   --color-sunset-900: #772b18;
 
-  /* Shadows */
-  --shadow-soft: 0 1px 2px rgb(28 62 78 / 0.06), 0 4px 12px rgb(28 62 78 / 0.06);
-  --shadow-card: 0 1px 3px rgb(28 62 78 / 0.08), 0 8px 24px rgb(28 62 78 / 0.08);
-  --shadow-lift: 0 2px 6px rgb(28 62 78 / 0.1), 0 16px 40px rgb(28 62 78 / 0.14);
+  /* Shadows — tinted with ink, never pure black */
+  --shadow-soft: 0 1px 2px rgb(10 26 28 / 0.05), 0 6px 16px rgb(10 26 28 / 0.05);
+  --shadow-card: 0 1px 3px rgb(10 26 28 / 0.06), 0 12px 32px rgb(10 26 28 / 0.08);
+  --shadow-lift: 0 2px 6px rgb(10 26 28 / 0.08), 0 24px 60px rgb(10 26 28 / 0.16);
 
-  /* Animations */
-  --animate-fade-up: fade-up 0.6s ease-out both;
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-fade-up: fade-up 0.6s var(--ease-out-expo) both;
   --animate-fade-in: fade-in 0.4s ease-out both;
+  --animate-marquee: marquee 48s linear infinite;
 
   @keyframes fade-up {
     from {
@@ -82,6 +90,15 @@
       opacity: 1;
     }
   }
+
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
 }
 
 /* Base styles live in @layer base so Tailwind utilities can override them */
@@ -91,25 +108,61 @@
   }
 
   body {
-    @apply bg-white text-stone-700 antialiased;
+    @apply bg-sand-50 text-stone-700 antialiased;
     font-family: var(--font-sans);
+    font-feature-settings: "ss01", "ss02";
   }
 
   h1,
   h2,
   h3 {
-    @apply text-stone-900;
+    @apply text-ink-900;
+    letter-spacing: -0.02em;
   }
 
   /* Visible, consistent focus states for keyboard users */
   :focus-visible {
     outline: 2px solid var(--color-ocean-500);
-    outline-offset: 2px;
-    border-radius: 4px;
+    outline-offset: 3px;
+    border-radius: 6px;
   }
 
   ::selection {
     background: var(--color-ocean-200);
+    color: var(--color-ink-950);
+  }
+}
+
+@layer components {
+  /* Film grain over dark chapters. Pointer-transparent, purely decorative. */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Ambient lagoon glow for dark chapters */
+  .ambient-lagoon {
+    background:
+      radial-gradient(60% 50% at 15% 10%, rgb(63 176 166 / 0.18), transparent 70%),
+      radial-gradient(50% 60% at 90% 90%, rgb(166 139 99 / 0.14), transparent 70%),
+      var(--color-ink-900);
+  }
+
+  .marquee-track {
+    animation: var(--animate-marquee);
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
   }
 }
 
@@ -123,6 +176,9 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  .marquee-track {
+    animation: none !important;
   }
 }
 

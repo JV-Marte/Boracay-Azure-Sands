@@ -17,7 +17,7 @@ export default async function AdminRoomsPage() {
     <div className="mx-auto max-w-6xl">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="font-display text-3xl font-semibold text-stone-900">Rooms</h1>
+          <h1 className="font-display text-3xl font-medium text-ink-900">Rooms</h1>
           <p className="mt-1 text-sm text-stone-500">
             Manage inventory, pricing, photos, and availability status.
           </p>

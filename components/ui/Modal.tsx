@@ -39,7 +39,7 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
       aria-label={title}
     >
       <div className="flex items-center justify-between border-b border-stone-100 px-6 py-4">
-        <h2 className="font-display text-lg font-semibold text-stone-900">{title}</h2>
+        <h2 className="font-display text-lg font-medium text-ink-900">{title}</h2>
         <button
           type="button"
           onClick={onClose}

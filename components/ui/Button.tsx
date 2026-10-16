@@ -3,30 +3,39 @@ import Link from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "outline" | "ghost" | "danger" | "sunset";
+type Variant =
+  | "primary"
+  | "secondary"
+  | "outline"
+  | "ghost"
+  | "danger"
+  | "sunset"
+  | "light"
+  | "glass";
 type Size = "sm" | "md" | "lg";
 
 const variantClasses: Record<Variant, string> = {
-  primary:
-    "bg-ocean-600 text-white hover:bg-ocean-700 active:bg-ocean-800 shadow-soft",
-  secondary:
-    "bg-ocean-50 text-ocean-800 hover:bg-ocean-100 active:bg-ocean-200",
+  primary: "bg-ink-900 text-sand-50 hover:bg-ocean-800 active:bg-ocean-900",
+  secondary: "bg-ocean-50 text-ocean-800 hover:bg-ocean-100 active:bg-ocean-200",
   outline:
-    "border border-stone-300 bg-white text-stone-800 hover:border-ocean-400 hover:text-ocean-700 active:bg-ocean-50",
-  ghost: "text-stone-700 hover:bg-stone-100 active:bg-stone-200",
+    "border border-ink-900/15 bg-transparent text-ink-900 hover:border-ink-900 active:bg-sand-100",
+  ghost: "text-stone-700 hover:bg-sand-100 active:bg-sand-200",
   danger: "bg-red-600 text-white hover:bg-red-700 active:bg-red-800",
-  sunset:
-    "bg-sunset-500 text-white hover:bg-sunset-600 active:bg-sunset-700 shadow-soft",
+  // Lagoon accent: dark text on a light teal — the hero/CTA action on dark grounds
+  sunset: "bg-ocean-300 text-ink-950 hover:bg-ocean-200 active:bg-ocean-400",
+  light: "bg-sand-50 text-ink-950 hover:bg-white active:bg-sand-100",
+  glass:
+    "border border-white/25 bg-white/10 text-white backdrop-blur-md hover:border-white/60 hover:bg-white/20",
 };
 
 const sizeClasses: Record<Size, string> = {
-  sm: "h-9 px-3.5 text-sm gap-1.5",
-  md: "h-11 px-5 text-sm gap-2",
-  lg: "h-12 px-7 text-base gap-2",
+  sm: "h-9 px-4 text-sm gap-1.5",
+  md: "h-11 px-5 text-[15px] gap-2",
+  lg: "h-14 px-8 text-base gap-2.5",
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center rounded-full font-medium transition-colors duration-150 disabled:pointer-events-none disabled:opacity-50 select-none whitespace-nowrap";
+  "inline-flex items-center justify-center rounded-full font-medium tracking-[-0.005em] transition-[color,background-color,border-color,transform] duration-300 ease-[var(--ease-out-expo)] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 select-none whitespace-nowrap";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;

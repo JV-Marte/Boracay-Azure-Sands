@@ -8,7 +8,7 @@ import { forwardRef, useId } from "react";
 import { cn } from "@/lib/utils";
 
 const controlClasses =
-  "w-full rounded-xl border border-stone-300 bg-white px-3.5 text-[15px] text-stone-900 placeholder:text-stone-400 transition-colors hover:border-stone-400 focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-200 disabled:cursor-not-allowed disabled:bg-stone-50 aria-invalid:border-red-400 aria-invalid:focus:ring-red-200";
+  "w-full rounded-2xl border border-sand-300 bg-white px-3.5 text-[15px] text-stone-900 placeholder:text-stone-400 transition-colors hover:border-sand-500 focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-200 disabled:cursor-not-allowed disabled:bg-stone-50 aria-invalid:border-red-400 aria-invalid:focus:ring-red-200";
 
 interface FieldWrapperProps {
   label: string;

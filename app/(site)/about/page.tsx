@@ -48,28 +48,25 @@ const highlights = [
 export default function AboutPage() {
   return (
     <>
-      <section className="relative isolate">
+      <section className="grain relative isolate flex min-h-[78svh] items-end overflow-hidden bg-ink-950">
         <Image
           src="/images/boracay-hero-v2.png"
           alt="White Beach, Boracay — turquoise water meeting powder-white sand"
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover saturate-[0.8]"
         />
-        <div className="absolute inset-0 bg-ocean-950/55" />
-        <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-36 sm:px-6 lg:px-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/75">
-            Our story
-          </p>
-          <h1 className="mt-3 max-w-2xl font-display text-4xl font-semibold tracking-tight text-white sm:text-5xl text-balance">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_50%_30%,rgb(5_15_16/0.2),rgb(5_15_16/0.85))]" />
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-20 pt-40 sm:px-8 md:pb-28">
+          <h1 className="max-w-5xl font-display text-[clamp(3rem,6.4vw,6rem)] font-medium leading-[0.96] tracking-[-0.05em] text-white text-balance">
             A condotel born from too many short vacations
           </h1>
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="space-y-6 text-[17px] leading-relaxed text-stone-600">
+      <section className="mx-auto max-w-3xl px-5 py-32 sm:px-8 md:py-44">
+        <div className="space-y-6 text-xl leading-relaxed text-stone-600">
           <p>
             Azure Sands started the way most Boracay stories do: with a trip
             that felt too short. Our family had been coming to the island for
@@ -99,25 +96,24 @@ export default function AboutPage() {
             trip, or a two-month workation chasing fiber Wi-Fi and sunsets —
             we’d love to have you. Come stay a little longer.
           </p>
-          <p className="font-display text-lg text-stone-800">
+          <p className="text-xl font-medium text-ink-900">
             — The Azure Sands family
           </p>
         </div>
       </section>
 
-      <section className="bg-sand-50">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <section className="border-t border-sand-200">
+        <div className="mx-auto max-w-7xl px-5 py-32 sm:px-8 md:py-44">
           <SectionHeading
-            eyebrow="What we promise"
             title="Why travelers pick Azure Sands"
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {highlights.map((item) => (
-              <Card key={item.title} className="p-6">
+              <Card key={item.title} className="p-8">
                 <div className="flex size-11 items-center justify-center rounded-xl bg-palm-50">
                   <item.icon className="size-5 text-palm-600" aria-hidden />
                 </div>
-                <h3 className="mt-4 font-display text-lg font-semibold text-stone-900">
+                <h3 className="mt-4 font-display text-lg font-medium text-ink-900">
                   {item.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-stone-500">{item.body}</p>
