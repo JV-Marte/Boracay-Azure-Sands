@@ -20,12 +20,9 @@ export default async function GymJoinPage({
   const matched = planSlug ? GYM_PLANS.find((p) => p.slug === planSlug) : undefined;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-6xl px-5 pb-24 pt-12 sm:px-8 md:pb-32 md:pt-16">
       <div className="max-w-2xl">
-        <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-ember-400">
-          Membership
-        </p>
-        <h1 className="mt-2 font-display text-4xl font-medium tracking-[-0.03em] text-white sm:text-5xl">
+        <h1 className="text-[clamp(2.75rem,6vw,5.5rem)] font-black leading-[0.92] tracking-[-0.055em] text-white text-balance">
           Start training this week
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-white/60">

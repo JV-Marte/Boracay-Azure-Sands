@@ -16,11 +16,8 @@ export default function CafeMenuPage() {
   const open = isKitchenOpen();
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
-      <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-sunset-600">
-        Menu
-      </p>
-      <h1 className="mt-2 font-display text-4xl font-medium tracking-[-0.03em] text-ink-900 sm:text-5xl">
+    <div className="mx-auto max-w-5xl px-5 pb-24 pt-12 sm:px-8 md:pb-32 md:pt-16">
+      <h1 className="text-[clamp(2.75rem,6vw,5.25rem)] font-semibold leading-[0.95] tracking-[-0.05em] text-espresso-900 text-balance">
         What&apos;s cooking today
       </h1>
       <p className="mt-4 max-w-2xl text-lg leading-relaxed text-stone-500">

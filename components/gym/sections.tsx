@@ -1,129 +1,172 @@
-import { ArrowRight, Check, Clock, MapPin, Quote, Star } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ScrubReveal } from "@/components/motion/ScrubReveal";
+import { TypeMarquee } from "@/components/motion/TypeMarquee";
 import {
   DAY_NAMES,
   GYM_CLASSES,
   GYM_FACILITIES,
   GYM_PLANS,
   GYM_TESTIMONIALS,
-  GYM_TRAINERS,
   getTrainer,
 } from "@/lib/data/gym";
 import { GYM } from "@/lib/constants";
 import { cn, formatPHP } from "@/lib/utils";
 import type { GymClass } from "@/types";
+import type { Zone } from "./ZoneAccordion";
 
-const SECTION = "mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8";
+const CHAPTER = "mx-auto max-w-7xl px-5 py-32 sm:px-8 md:py-48";
 
-export function GymSectionHeading({
-  eyebrow,
-  title,
-  description,
-  align = "center",
-}: {
-  eyebrow?: string;
-  title: string;
-  description?: string;
-  align?: "left" | "center";
-}) {
+/** Big left-aligned chapter title with an optional aside on the right. */
+function ChapterHead({ title, aside }: { title: string; aside?: React.ReactNode }) {
   return (
-    <div className={cn("max-w-2xl", align === "center" ? "mx-auto text-center" : "text-left")}>
-      {eyebrow && (
-        <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-ember-400">
-          {eyebrow}
-        </p>
-      )}
-      <h2 className="mt-2 font-display text-3xl font-medium tracking-[-0.03em] text-white text-balance sm:text-4xl">
+    <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+      <h2 className="max-w-4xl text-[clamp(2.5rem,5.2vw,4.75rem)] font-black leading-[0.95] tracking-[-0.05em] text-white">
         {title}
       </h2>
-      {description && (
-        <p className="mt-3.5 text-base leading-relaxed text-white/60 sm:text-lg">{description}</p>
-      )}
+      {aside && <div className="max-w-sm text-lg leading-relaxed text-white/55">{aside}</div>}
     </div>
   );
 }
 
-export function GymHero() {
+// ---------------------------------------------------------------------------
+
+export function GymMarquee() {
+  const disciplines = [...new Set(GYM_CLASSES.map((c) => c.name))];
   return (
-    <section className="relative isolate overflow-hidden">
-      <Image
-        src="/images/gym/hero.jpg"
-        alt="The main training floor at Azure Sands Fitness"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
+    <TypeMarquee
+      items={disciplines}
+      label="Classes at Azure Sands Fitness"
+      className="border-y border-white/10 py-9 md:py-12"
+      textClassName="text-[clamp(2.25rem,5.5vw,4.75rem)] font-black leading-none tracking-[-0.045em]"
+      solidClassName="text-white"
+      outlineClassName="text-transparent [-webkit-text-stroke:1.5px_var(--color-ember-500)]"
+      dotClassName="bg-ember-500"
+    />
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Bento. grid-flow-dense, interlocking spans:
+//   lg (4 cols): A 2x2 + B 2x1 + C 1x1 + D 1x1 + E 4x1 = 12 cells = 3 full rows
+//   md (2 cols): A 2x2 + B 2x1 + C 1x1 + D 1x1 + E 2x1 = 10 cells = 5 full rows
+
+export function GymBento() {
+  const guest = GYM_PLANS.find((p) => p.slug === "hotel-guest");
+  const zones = GYM_FACILITIES.filter((f) =>
+    ["free_weights", "cardio_deck", "functional_turf", "group_studio"].includes(f.key),
+  );
+  return (
+    <section className={CHAPTER} id="facilities">
+      <ChapterHead
+        title="Everything you need, nothing you don't"
+        aside="One floor, four zones, and enough equipment that you never queue for a rack at 6 AM."
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-iron-950 via-iron-950/85 to-iron-950/30" />
-      <div className="relative mx-auto flex min-h-[560px] max-w-7xl flex-col justify-center px-4 py-24 sm:px-6 lg:px-8">
-        <div className="max-w-xl">
-          <h1 className="font-display text-4xl font-medium tracking-[-0.03em] text-white text-balance sm:text-6xl">
-            {GYM.tagline}
-          </h1>
-          <p className="mt-5 text-lg leading-relaxed text-white/70">
-            A full-equipment gym on the ground floor of Azure Sands Boracay. Free weights, a
-            cardio deck, functional turf, and coached classes six days a week — open to the
-            island, not just to our guests.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link
-              href="/gym/join"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-ember-500 px-7 text-base font-semibold text-white transition-colors hover:bg-ember-600"
-            >
-              Start a membership
-              <ArrowRight className="size-4" aria-hidden />
-            </Link>
-            <Link
-              href="/gym/schedule"
-              className="inline-flex h-12 items-center justify-center rounded-full border border-white/25 px-7 text-base font-medium text-white transition-colors hover:bg-white/10"
-            >
-              See the class schedule
-            </Link>
+
+      <div className="mt-16 grid grid-flow-dense grid-cols-1 gap-3 md:mt-20 md:grid-cols-2 md:auto-rows-[18rem] lg:grid-cols-4 lg:auto-rows-[19rem]">
+        {/* A: 2x2 image */}
+        <div className="group relative min-h-[24rem] overflow-hidden rounded-xl bg-iron-900 md:col-span-2 md:row-span-2 md:min-h-0">
+          <Image
+            src="/images/gym/reception.jpg"
+            alt="The reception desk at Azure Sands Fitness"
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-iron-950 via-iron-950/20 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 p-7 md:p-9">
+            <h3 className="max-w-md text-3xl font-black leading-[1] tracking-[-0.04em] text-white md:text-4xl">
+              Air-conditioned, 5 AM to 11 PM
+            </h3>
+            <p className="mt-3 max-w-md text-[15px] leading-relaxed text-white/70">
+              Train before the heat or after the sunset. The floor stays cool either way.
+            </p>
           </div>
-          <dl className="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-white/10 pt-6">
-            {[
-              { label: "Day pass", value: "₱250" },
-              { label: "Open daily", value: "5 AM – 11 PM" },
-              { label: "Classes / week", value: `${GYM_CLASSES.length}` },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <dt className="text-xs uppercase tracking-[0.14em] text-white/45">{stat.label}</dt>
-                <dd className="mt-1 font-display text-xl font-medium text-white">{stat.value}</dd>
-              </div>
+        </div>
+
+        {/* B: 2x1 ember coaching */}
+        <div className="flex min-h-[16rem] flex-col justify-between rounded-xl bg-ember-500 p-7 text-iron-950 md:col-span-2 md:min-h-0 md:p-9">
+          <p className="text-sm font-bold">Every membership</p>
+          <div>
+            <h3 className="max-w-md text-3xl font-black leading-[1] tracking-[-0.04em] text-iron-950 md:text-4xl">
+              Starts with a free session with a coach
+            </h3>
+            <p className="mt-3 max-w-md text-[15px] leading-relaxed text-iron-950/75">
+              Nobody gets left to figure out the cable machine alone.
+            </p>
+          </div>
+        </div>
+
+        {/* C: 1x1 image */}
+        <div className="group relative min-h-[16rem] overflow-hidden rounded-xl bg-iron-900 md:min-h-0">
+          <Image
+            src="/images/gym/locker-room.jpg"
+            alt="Showers and day lockers"
+            fill
+            sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-iron-950/90 to-transparent" />
+          <h3 className="absolute inset-x-0 bottom-0 p-7 text-2xl font-black leading-[1.05] tracking-[-0.03em] text-white">
+            Hot showers, lockers, a fresh towel
+          </h3>
+        </div>
+
+        {/* D: 1x1 guest rate */}
+        <div className="flex min-h-[16rem] flex-col justify-between rounded-xl border border-white/10 bg-iron-900 p-7 md:min-h-0">
+          <p className="text-[clamp(3.25rem,5.5vw,4.5rem)] font-black leading-[0.85] tracking-[-0.06em] text-white">
+            {guest ? formatPHP(guest.price) : "₱150"}
+          </p>
+          <div>
+            <h3 className="text-2xl font-black leading-[1.05] tracking-[-0.03em] text-white">
+              A day, if you’re staying upstairs
+            </h3>
+            <p className="mt-2 text-[15px] text-white/55">Show your room key at the desk.</p>
+          </div>
+        </div>
+
+        {/* E: full-width zone strip */}
+        <div className="grain relative flex min-h-[18rem] flex-col justify-center overflow-hidden rounded-xl border border-white/10 bg-[radial-gradient(70%_120%_at_0%_0%,rgb(248_71_26/0.16),transparent_60%)] bg-iron-900 p-7 md:col-span-2 md:min-h-0 md:p-9 lg:col-span-4">
+          <ul className="relative z-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {zones.map((zone) => (
+              <li key={zone.key}>
+                <zone.icon className="size-7 text-ember-400" strokeWidth={1.5} aria-hidden />
+                <h3 className="mt-5 text-xl font-bold tracking-[-0.02em] text-white">{zone.label}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/55">{zone.description}</p>
+              </li>
             ))}
-          </dl>
+          </ul>
         </div>
       </div>
     </section>
   );
 }
 
-export function GymFacilities() {
-  const featured = GYM_FACILITIES.filter((f) => f.featured);
+// ---------------------------------------------------------------------------
+
+export function GymManifesto() {
   return (
-    <section className={SECTION} id="facilities">
-      <GymSectionHeading
-        eyebrow="What's inside"
-        title="Everything you need, nothing you don't"
-        description="One floor, four zones, and enough equipment that you never queue for a rack at 6 AM."
+    <section className="relative overflow-hidden px-5 py-32 sm:px-8 md:py-48">
+      <div
+        aria-hidden
+        className="absolute left-1/2 top-1/2 h-[30rem] w-[50rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-ember-500/10 blur-[140px]"
       />
-      <div className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-        {featured.map((facility) => (
-          <div key={facility.key}>
-            <span className="grid size-11 place-items-center rounded-xl bg-white/5 ring-1 ring-inset ring-white/10">
-              <facility.icon className="size-5 text-ember-400" aria-hidden />
-            </span>
-            <h3 className="mt-4 font-medium text-white">{facility.label}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-white/55">{facility.description}</p>
-          </div>
-        ))}
+      <div className="relative z-10">
+        <ScrubReveal
+          text="Most hotel gyms are a treadmill and a mirror. This one has two squat racks, a sled track, a studio that gets loud, and three coaches who will fix your deadlift before your coffee goes cold."
+          accent={["loud", "deadlift"]}
+          className="mx-auto max-w-6xl text-[clamp(1.875rem,4.2vw,3.75rem)] font-bold leading-[1.1] tracking-[-0.04em] text-white"
+          accentClassName="text-ember-400"
+        />
       </div>
     </section>
   );
 }
 
-const ZONES = [
+// ---------------------------------------------------------------------------
+
+export const ZONES: Zone[] = [
   {
     image: "/images/gym/strength-zone.jpg",
     title: "The strength floor",
@@ -146,143 +189,7 @@ const ZONES = [
   },
 ];
 
-export function GymZones() {
-  return (
-    <section className="border-y border-white/10 bg-iron-900/40">
-      <div className={SECTION}>
-        <GymSectionHeading
-          eyebrow="The floor"
-          title="Four zones under one roof"
-          align="left"
-        />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
-          {ZONES.map((zone) => (
-            <article
-              key={zone.title}
-              className="group overflow-hidden rounded-2xl border border-white/10 bg-iron-900"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
-                  src={zone.image}
-                  alt={zone.title}
-                  fill
-                  sizes="(min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="font-display text-xl font-medium text-white">{zone.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">{zone.body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function GymPlans() {
-  return (
-    <section className={SECTION} id="plans">
-      <GymSectionHeading
-        eyebrow="Membership"
-        title="Pick a plan, start this week"
-        description="No joining fee, no lock-in beyond the term you pay for. Every membership includes all group classes."
-      />
-      <div className="mt-14 grid gap-6 lg:grid-cols-3">
-        {GYM_PLANS.map((plan) => (
-          <article
-            key={plan.id}
-            className={cn(
-              "flex flex-col rounded-2xl border p-7",
-              plan.featured
-                ? "border-ember-500/50 bg-gradient-to-b from-ember-500/10 to-transparent ring-1 ring-ember-500/20"
-                : "border-white/10 bg-iron-900/60",
-            )}
-          >
-            <div className="flex items-start justify-between gap-3">
-              <h3 className="font-display text-xl font-medium text-white">{plan.name}</h3>
-              {plan.badge && (
-                <span
-                  className={cn(
-                    "shrink-0 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide",
-                    plan.featured
-                      ? "bg-ember-500 text-white"
-                      : "bg-white/10 text-white/70",
-                  )}
-                >
-                  {plan.badge}
-                </span>
-              )}
-            </div>
-            <p className="mt-4 flex items-baseline gap-1.5">
-              <span className="font-display text-4xl font-medium text-white">
-                {formatPHP(plan.price)}
-              </span>
-              <span className="text-sm text-white/50">
-                {plan.billing_period === "visit" ? "per visit" : `/ ${plan.billing_period}`}
-              </span>
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-white/60">{plan.description}</p>
-            <ul className="mt-6 flex-1 space-y-2.5">
-              {plan.perks.map((perk) => (
-                <li key={perk} className="flex gap-2.5 text-sm text-white/75">
-                  <Check className="mt-0.5 size-4 shrink-0 text-ember-400" aria-hidden />
-                  <span>{perk}</span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              href={`/gym/join?plan=${plan.slug}`}
-              className={cn(
-                "mt-7 inline-flex h-11 items-center justify-center rounded-full text-sm font-semibold transition-colors",
-                plan.featured
-                  ? "bg-ember-500 text-white hover:bg-ember-600"
-                  : "border border-white/20 text-white hover:bg-white/10",
-              )}
-            >
-              Choose {plan.name}
-            </Link>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export function GymTrainers() {
-  return (
-    <section className="border-y border-white/10 bg-iron-900/40" id="trainers">
-      <div className={SECTION}>
-        <GymSectionHeading
-          eyebrow="The coaches"
-          title="Three people who will learn your name"
-          description="Every membership starts with a free onboarding session. Nobody gets left to figure out the cable machine alone."
-        />
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {GYM_TRAINERS.map((trainer) => (
-            <article key={trainer.id}>
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-                <Image
-                  src={trainer.image}
-                  alt={trainer.name}
-                  fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="mt-5 font-display text-xl font-medium text-white">{trainer.name}</h3>
-              <p className="mt-1 text-sm font-medium text-ember-400">{trainer.specialty}</p>
-              <p className="mt-3 text-sm leading-relaxed text-white/60">{trainer.bio}</p>
-              <p className="mt-3 text-xs text-white/40">{trainer.certification}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+// ---------------------------------------------------------------------------
 
 export function ClassRow({ session }: { session: GymClass }) {
   const trainer = getTrainer(session.trainer_id);
@@ -293,22 +200,19 @@ export function ClassRow({ session }: { session: GymClass }) {
         ? "bg-amber-400/15 text-amber-300"
         : "bg-emerald-400/15 text-emerald-300";
   return (
-    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-white/10 bg-iron-900/60 px-4 py-3.5">
-      <span className="w-16 shrink-0 font-display text-lg font-medium text-white tabular-nums">
+    <div className="group flex flex-wrap items-center gap-x-6 gap-y-2 border-b border-white/10 py-6 transition-colors hover:border-ember-500/60">
+      <span className="w-20 shrink-0 text-2xl font-black tracking-[-0.03em] text-white tabular-nums">
         {session.start_time}
       </span>
       <div className="min-w-0 flex-1">
-        <p className="font-medium text-white">{session.name}</p>
+        <p className="text-lg font-bold text-white transition-colors group-hover:text-ember-300">
+          {session.name}
+        </p>
         <p className="truncate text-sm text-white/50">
           {trainer?.name} · {session.duration_min} min · {session.capacity} spots
         </p>
       </div>
-      <span
-        className={cn(
-          "shrink-0 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide",
-          intensityTone,
-        )}
-      >
+      <span className={cn("shrink-0 rounded-full px-3 py-1 text-xs font-bold capitalize", intensityTone)}>
         {session.intensity}
       </span>
     </div>
@@ -330,123 +234,123 @@ export function GymSchedulePreview() {
   const isToday = dayIndex === todayIndex;
 
   return (
-    <section className={SECTION}>
-      <div className="flex flex-wrap items-end justify-between gap-6">
-        <GymSectionHeading
-          eyebrow="Classes"
-          title={isToday ? "On the timetable today" : `Next up: ${DAY_NAMES[dayIndex]}`}
-          description="All classes are included with every membership, and day-pass holders can drop into anything running during their visit."
-          align="left"
-        />
-        <Link
-          href="/gym/schedule"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-ember-400 hover:text-ember-300"
-        >
-          Full weekly schedule
-          <ArrowRight className="size-4" aria-hidden />
-        </Link>
-      </div>
-      <div className="mt-10 grid gap-3 sm:grid-cols-2">
-        {sessions.map((session) => (
-          <ClassRow key={session.id} session={session} />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export function GymTestimonials() {
-  return (
-    <section className="border-y border-white/10 bg-iron-900/40">
-      <div className={SECTION}>
-        <GymSectionHeading eyebrow="Members" title="What people say on the floor" />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {GYM_TESTIMONIALS.map((t) => (
-            <figure
-              key={t.name}
-              className="flex flex-col rounded-2xl border border-white/10 bg-iron-900 p-7"
-            >
-              <Quote className="size-6 text-ember-500/60" aria-hidden />
-              <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-white/80">
-                {t.quote}
-              </blockquote>
-              <figcaption className="mt-6 border-t border-white/10 pt-4">
-                <p className="font-medium text-white">{t.name}</p>
-                <p className="text-sm text-white/45">{t.detail}</p>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <div className="mt-10 flex items-center justify-center gap-1.5 text-sm text-white/50">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} className="size-4 fill-ember-400 text-ember-400" aria-hidden />
-          ))}
-          <span className="ml-2">Rated 4.8 by members and hotel guests</span>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function GymCta() {
-  return (
-    <section className={SECTION}>
-      <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-ember-600 to-ember-800 px-8 py-14 sm:px-14">
-        <div className="max-w-2xl">
-          <h2 className="font-display text-3xl font-medium tracking-[-0.03em] text-white text-balance sm:text-4xl">
-            First session is on us
+    <section className={CHAPTER}>
+      <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-5">
+          <h2 className="text-[clamp(2.5rem,5.2vw,4.75rem)] font-black leading-[0.95] tracking-[-0.05em] text-white">
+            {isToday ? "On the floor today" : `Next up, ${DAY_NAMES[dayIndex]}`}
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-white/85">
-            Sign up online and a coach will meet you at the desk, walk you through every machine,
-            and write your first four-week programme. Walk-ins welcome too — ₱250 a day, ₱150 if
-            you are staying upstairs.
+          <p className="mt-6 max-w-sm text-lg leading-relaxed text-white/55">
+            Every class is included with every membership. Day-pass holders can drop into anything
+            running during their visit.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/gym/join"
-              className="inline-flex h-12 items-center justify-center rounded-full bg-white px-7 text-base font-semibold text-ember-700 transition-colors hover:bg-white/90"
-            >
-              Start a membership
-            </Link>
-            <a
-              href={`tel:${GYM.phone.replace(/\s/g, "")}`}
-              className="inline-flex h-12 items-center justify-center rounded-full border border-white/40 px-7 text-base font-medium text-white transition-colors hover:bg-white/10"
-            >
-              Call {GYM.phone}
-            </a>
-          </div>
-          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm text-white/80">
-            <span className="flex items-center gap-2">
-              <MapPin className="size-4" aria-hidden />
-              {GYM.address}
-            </span>
-            <span className="flex items-center gap-2">
-              <Clock className="size-4" aria-hidden />
-              {GYM.hoursLabel}
-            </span>
-          </div>
+          <Link
+            href="/gym/schedule"
+            className="group mt-9 inline-flex items-center gap-2 border-b border-white/25 pb-1 text-lg font-medium text-white transition-colors hover:border-ember-400 hover:text-ember-300"
+          >
+            Full weekly schedule
+            <ArrowUpRight
+              className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              aria-hidden
+            />
+          </Link>
+        </div>
+        <div className="border-t border-white/10 lg:col-span-7">
+          {sessions.map((session) => (
+            <ClassRow key={session.id} session={session} />
+          ))}
         </div>
       </div>
     </section>
   );
 }
+
+// ---------------------------------------------------------------------------
+
+export function GymMemberQuotes() {
+  return (
+    <ul className="mt-24 grid gap-10 border-t border-white/10 pt-12 md:grid-cols-3 md:gap-8">
+      {GYM_TESTIMONIALS.map((t) => (
+        <li key={t.name}>
+          <blockquote className="text-lg leading-relaxed text-white/80">“{t.quote}”</blockquote>
+          <p className="mt-5 font-bold text-white">{t.name}</p>
+          <p className="text-sm text-white/45">{t.detail}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// ---------------------------------------------------------------------------
 
 export function GymFaq({ faqs }: { faqs: { question: string; answer: string }[] }) {
   return (
-    <section className={SECTION} id="faq">
-      <GymSectionHeading eyebrow="Questions" title="Before you come in" />
-      <div className="mx-auto mt-12 max-w-3xl divide-y divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-iron-900/60">
+    <section className={cn(CHAPTER, "grid gap-12 lg:grid-cols-12 lg:gap-10")} id="faq">
+      <h2 className="text-[clamp(2.5rem,4.6vw,4rem)] font-black leading-[0.95] tracking-[-0.05em] text-white lg:col-span-4">
+        Before you come in
+      </h2>
+      <div className="divide-y divide-white/10 border-y border-white/10 lg:col-span-7 lg:col-start-6">
         {faqs.map((faq) => (
           <details key={faq.question} className="group">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-[15px] font-medium text-white transition-colors hover:bg-white/5">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-lg font-bold text-white transition-colors hover:text-ember-300 [&::-webkit-details-marker]:hidden">
               {faq.question}
-              <span className="grid size-6 shrink-0 place-items-center rounded-full border border-white/20 text-white/60 transition-transform group-open:rotate-45">
-                +
-              </span>
+              <Plus
+                className="size-5 shrink-0 text-white/50 transition-transform duration-300 group-open:rotate-45 group-open:text-ember-400"
+                aria-hidden
+              />
             </summary>
-            <p className="px-5 pb-5 text-[15px] leading-relaxed text-white/60">{faq.answer}</p>
+            <p className="max-w-2xl pb-7 text-base leading-relaxed text-white/60">{faq.answer}</p>
           </details>
         ))}
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+
+export function GymCta() {
+  return (
+    <section className="grain relative isolate overflow-hidden bg-iron-950">
+      <Image
+        src="/images/gym/functional-turf.jpg"
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover opacity-40 grayscale"
+        aria-hidden
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[radial-gradient(ellipse_75%_70%_at_50%_50%,rgb(18_22_25/0.4),rgb(18_22_25/0.95))]"
+      />
+      <div
+        aria-hidden
+        className="absolute -bottom-32 left-1/2 h-72 w-[56rem] -translate-x-1/2 rounded-full bg-ember-500/30 blur-[120px]"
+      />
+      <div className="relative z-10 mx-auto max-w-7xl px-5 py-36 text-center sm:px-8 md:py-56">
+        <h2 className="mx-auto max-w-6xl text-[clamp(3.25rem,8.5vw,8.5rem)] font-black leading-[0.88] tracking-[-0.06em] text-white">
+          First session is <span className="text-ember-400">on us</span>
+        </h2>
+        <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-white/70">
+          Sign up online and a coach meets you at the desk, walks you through every machine, and
+          writes your first four-week programme. Walk-ins welcome too.
+        </p>
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link
+            href="/gym/join"
+            className="group inline-flex h-14 items-center gap-2.5 rounded-full bg-ember-500 px-8 text-base font-bold text-iron-950 transition-colors duration-300 hover:bg-ember-400"
+          >
+            Start a membership
+            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
+          </Link>
+          <a
+            href={`tel:${GYM.phone.replace(/\s/g, "")}`}
+            className="inline-flex h-14 items-center rounded-full border border-white/25 px-8 text-base font-medium text-white transition-colors duration-300 hover:border-white/60 hover:bg-white/10"
+          >
+            Call {GYM.phone}
+          </a>
+        </div>
       </div>
     </section>
   );

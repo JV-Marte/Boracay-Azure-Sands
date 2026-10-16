@@ -5,7 +5,7 @@ import { HeroSearch } from "@/components/home/HeroSearch";
 import { IslandPinned } from "@/components/home/IslandPinned";
 import { Marquee } from "@/components/home/Marquee";
 import { ReviewCarousel } from "@/components/home/ReviewCarousel";
-import { ScrubReveal } from "@/components/home/ScrubReveal";
+import { ScrubReveal } from "@/components/motion/ScrubReveal";
 import { SuiteAccordion } from "@/components/home/SuiteAccordion";
 import {
   BentoSection,

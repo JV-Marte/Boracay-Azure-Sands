@@ -1,80 +1,96 @@
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { GYM, GYM_NAV_LINKS } from "@/lib/constants";
 
+const alsoOnProperty = [
+  { href: "/", label: "Azure Sands Boracay" },
+  { href: "/cafe", label: "Azure Sands Cafe" },
+];
+
 export function GymFooter() {
   return (
-    <footer className="border-t border-white/10 bg-iron-950 text-white/70">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-4">
-          <div className="md:col-span-2">
-            <Logo brand="fitness" tone="light" className="h-11" />
-            <p className="mt-4 max-w-md text-sm leading-relaxed">{GYM.description}</p>
+    <footer className="overflow-hidden border-t border-white/10 bg-iron-950 text-white/65">
+      <div className="mx-auto max-w-7xl px-5 pt-24 sm:px-8 md:pt-32">
+        <div className="grid gap-14 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+          <div className="sm:col-span-2 lg:col-span-5">
+            <Logo brand="fitness" tone="light" className="h-10" />
+            <p className="mt-10 max-w-md text-[clamp(1.625rem,2.4vw,2.125rem)] font-black leading-[1.05] tracking-[-0.04em] text-white">
+              Train where you stay.
+            </p>
+            <Link
+              href="/gym/join"
+              className="group mt-8 inline-flex items-center gap-2 border-b border-white/25 pb-1 text-lg font-medium text-white transition-colors hover:border-ember-400 hover:text-ember-300"
+            >
+              Start a membership
+              <ArrowUpRight
+                className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            </Link>
           </div>
 
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-white/45">
-              Explore
-            </h3>
-            <ul className="mt-4 space-y-2.5 text-sm">
+          <nav aria-label="Gym" className="lg:col-span-2 lg:col-start-7">
+            <h2 className="text-sm font-medium text-white/40">The gym</h2>
+            <ul className="mt-5 space-y-3 text-[15px]">
               {GYM_NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-white">
+                  <Link href={link.href} className="transition-colors hover:text-white">
                     {link.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/gym/join" className="hover:text-white">
+                <Link href="/gym/join" className="transition-colors hover:text-white">
                   Join now
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-white/45">
-              Visit
-            </h3>
-            <ul className="mt-4 space-y-3 text-sm">
-              <li className="flex gap-2.5">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-ember-400" aria-hidden />
-                <span>{GYM.address}</span>
-              </li>
-              <li className="flex gap-2.5">
-                <Clock className="mt-0.5 size-4 shrink-0 text-ember-400" aria-hidden />
-                <span>{GYM.hoursLabel}</span>
-              </li>
-              <li className="flex gap-2.5">
-                <Phone className="mt-0.5 size-4 shrink-0 text-ember-400" aria-hidden />
-                <a href={`tel:${GYM.phone.replace(/\s/g, "")}`} className="hover:text-white">
+          <div className="lg:col-span-2">
+            <h2 className="text-sm font-medium text-white/40">Visit</h2>
+            <ul className="mt-5 space-y-3 text-[15px]">
+              <li>{GYM.hoursLabel}</li>
+              <li>
+                <a href={`tel:${GYM.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-white">
                   {GYM.phone}
                 </a>
               </li>
-              <li className="flex gap-2.5">
-                <Mail className="mt-0.5 size-4 shrink-0 text-ember-400" aria-hidden />
-                <a href={`mailto:${GYM.email}`} className="hover:text-white">
+              <li>
+                <a href={`mailto:${GYM.email}`} className="break-all transition-colors hover:text-white">
                   {GYM.email}
                 </a>
               </li>
             </ul>
           </div>
+
+          <nav aria-label="Also on property" className="lg:col-span-2">
+            <h2 className="text-sm font-medium text-white/40">Also on property</h2>
+            <ul className="mt-5 space-y-3 text-[15px]">
+              {alsoOnProperty.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="transition-colors hover:text-white">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+        <p className="mt-16 max-w-xl text-sm leading-relaxed text-white/40">{GYM.address}</p>
+
+        <p
+          aria-hidden
+          className="pointer-events-none mt-10 select-none whitespace-nowrap text-center text-[clamp(4rem,19vw,17rem)] font-black leading-[0.78] tracking-[-0.07em] text-white/[0.05]"
+        >
+          FITNESS
+        </p>
+
+        <div className="border-t border-white/10 py-7 text-sm text-white/40">
           <p>
             © {new Date().getFullYear()} {GYM.name}. On the ground floor of Azure Sands Boracay.
-          </p>
-          <p>
-            Also on property:{" "}
-            <Link href="/" className="underline underline-offset-2 hover:text-white">
-              the condotel
-            </Link>{" "}
-            and{" "}
-            <Link href="/cafe" className="underline underline-offset-2 hover:text-white">
-              Azure Sands Cafe
-            </Link>
           </p>
         </div>
       </div>

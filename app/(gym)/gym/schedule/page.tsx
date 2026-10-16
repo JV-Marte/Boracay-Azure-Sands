@@ -15,14 +15,11 @@ export default function GymSchedulePage() {
   const dayOrder = [1, 2, 3, 4, 5, 6, 0];
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-      <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-ember-400">
-        Timetable
-      </p>
-      <h1 className="mt-2 font-display text-4xl font-medium tracking-[-0.03em] text-white sm:text-5xl">
+    <div className="mx-auto max-w-5xl px-5 pb-24 pt-12 sm:px-8 md:pb-32 md:pt-16">
+      <h1 className="text-[clamp(2.75rem,6vw,5.5rem)] font-black leading-[0.92] tracking-[-0.055em] text-white text-balance">
         Weekly class schedule
       </h1>
-      <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/60">
+      <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/60">
         {GYM_CLASSES.length} coached sessions a week, all included with a membership. Day-pass
         holders can join anything running during their visit at no extra charge — just tell the
         front desk when you check in.

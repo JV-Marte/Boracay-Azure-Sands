@@ -123,7 +123,7 @@ export function MenuBrowser({ kitchenOpen }: { kitchenOpen: boolean }) {
 
   return (
     <>
-      <div className="sticky top-16 z-30 -mx-4 border-b border-sand-200 bg-white/95 px-4 backdrop-blur-md sm:-mx-6 sm:px-6">
+      <div className="sticky top-20 z-30 -mx-4 border-b border-espresso-900/10 bg-sand-50/95 px-4 backdrop-blur-md sm:-mx-6 sm:px-6">
         <div className="flex gap-1 overflow-x-auto py-3">
           {grouped.map(({ category }) => (
             <a

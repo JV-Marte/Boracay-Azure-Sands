@@ -9,11 +9,8 @@ export const metadata: Metadata = {
 
 export default function TrackOrderPage() {
   return (
-    <div className="mx-auto max-w-xl px-4 py-16 sm:px-6 lg:px-8">
-      <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-sunset-600">
-        Track
-      </p>
-      <h1 className="mt-2 font-display text-4xl font-medium tracking-[-0.03em] text-ink-900">
+    <div className="mx-auto max-w-xl px-5 pb-24 pt-12 sm:px-8 md:pb-32 md:pt-16">
+      <h1 className="text-[clamp(2.75rem,6vw,5.25rem)] font-semibold leading-[0.95] tracking-[-0.05em] text-espresso-900 text-balance">
         Where&apos;s my order?
       </h1>
       <p className="mt-4 text-lg leading-relaxed text-stone-500">
